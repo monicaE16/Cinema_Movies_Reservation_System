@@ -6,8 +6,7 @@ import {
 } from "react-router-dom";
 
 import "./App.css";
-import "./views/sign-in";
-import SignIn from "./views/sign-in";
+import Home from "./views/home";
 
 function App() {
 	return (
@@ -16,7 +15,7 @@ function App() {
 
 			<div className="App">
 				<Routes>
-					<Route exact path="/" element={<SignIn />} />
+					<Route exact path="/" element={<Home />} />
 				</Routes>
 			</div>
 		</Router>
