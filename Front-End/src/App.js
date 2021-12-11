@@ -7,6 +7,8 @@ import {
 
 import "./App.css";
 import Home from "./views/home";
+import Signin from './views/signin';
+import Signup from "./views/signup";
 function App() {
 	return (
 		<Router>
@@ -17,7 +19,10 @@ function App() {
 					<Route exact path="/" element={<Home />} />
 				</Routes>
 				<Routes>
-					<Route exact path="/" element={<Home />} />
+					<Route exact path="/SignIn" element={<Signin />} />
+				</Routes>
+				<Routes>
+					<Route exact path="/SignUp" element={<Signup />} />
 				</Routes>
 			</div>
 		</Router>
