@@ -690,7 +690,7 @@ ul {
 	margin-top: 70px;
 	position: relative;
 	display: block;
-	background-color: #2b2b31;
+	background-color: var(--clr-primary-dark1);
 	padding: 40px 0;
 }
 .home .container {
@@ -3253,24 +3253,20 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .sign__logo img {
 	max-width: 172px;
 }
-.sign.section--bg
-{
-background-image: url("../img/section/maxresdefault.jpg");
-background-repeat: no-repeat;
-background-size: cover;
-height: 100vh;
-background-position: center center;
-position: relative;
-
+.sign.section--bg {
+	background-image: url("../img/section/maxresdefault.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100vh;
+	background-position: center center;
+	position: relative;
 }
-.overlay
-{
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, .8);
-    position: absolute;
-    z-index: 1;
-
+.overlay {
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+	position: absolute;
+	z-index: 1;
 }
 .sign__input {
 	background-color: var(--clr-primary-dark2);
