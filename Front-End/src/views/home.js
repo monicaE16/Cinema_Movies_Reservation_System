@@ -2,6 +2,7 @@ import React from "react";
 
 import Header from "../components/header";
 import MovieItem from "../components/movie_item";
+import Room1 from "../components/room1";
 
 const Home = () => {
 	return (
@@ -43,6 +44,7 @@ const Home = () => {
 					</div>
 				</div>
 			</section>
+			<Room1></Room1>
 		</div>
 	);
 };
