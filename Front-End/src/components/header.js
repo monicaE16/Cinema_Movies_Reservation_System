@@ -3,13 +3,13 @@ import React from "react";
 function Header() {
 	return (
 		<div>
-			<header class="header">
-				<div class="header__wrap">
-					<div class="container">
-						<div class="row">
-							<div class="col-12">
-								<div class="header__content">
-									<a href="/" class="header__logo">
+			<header className="header">
+				<div className="header__wrap">
+					<div className="container">
+						<div className="row">
+							<div className="col-12">
+								<div className="header__content">
+									<a href="/" className="header__logo">
 										<img src="img/logo.png" alt="" height="100%" />
 									</a>
 
@@ -45,8 +45,8 @@ function Header() {
 											<i className="icon ion-ios-search"></i>
 										</button>
 
-										<a href="/SignIn" class="header__sign-in">
-											<i class="icon ion-ios-log-in"></i>
+										<a href="/SignIn" className="header__sign-in">
+											<i className="icon ion-ios-log-in"></i>
 											<span>sign in</span>
 										</a>
 									</div>
