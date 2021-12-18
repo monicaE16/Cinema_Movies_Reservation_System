@@ -1,6 +1,7 @@
 import React from "react";
 
 function Header() {
+	const edited = true;
 	return (
 		<div>
 			<header className="header">
@@ -33,11 +34,14 @@ function Header() {
 												About
 											</a>
 										</li>
+										{
+										  edited ===true &&
 										<li class="header__nav-item">
 											<a href="/Add" class="header__nav-link">
 												Add Movie
 											</a>
 										</li>
+										}
 									</ul>
 
 									<div className="header__auth">
