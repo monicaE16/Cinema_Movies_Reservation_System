@@ -9,7 +9,7 @@ function Header() {
 						<div class="row">
 							<div class="col-12">
 								<div class="header__content">
-									<a href="index.html" class="header__logo">
+									<a href="/" class="header__logo">
 										<img src="img/logo.png" alt="" height="100%" />
 									</a>
 
@@ -17,7 +17,7 @@ function Header() {
 										<li class="header__nav-item">
 											<a
 												class="dropdown-toggle header__nav-link"
-												href="#"
+												href="/"
 												role="button"
 												id="dropdownMenuHome"
 												data-toggle="dropdown"
@@ -33,6 +33,11 @@ function Header() {
 												About
 											</a>
 										</li>
+										<li class="header__nav-item">
+											<a href="/Add" class="header__nav-link">
+												Add Movie
+											</a>
+										</li>
 									</ul>
 
 									<div class="header__auth">
@@ -40,7 +45,7 @@ function Header() {
 											<i class="icon ion-ios-search"></i>
 										</button>
 
-										<a href="signin.html" class="header__sign-in">
+										<a href="/SignIn" class="header__sign-in">
 											<i class="icon ion-ios-log-in"></i>
 											<span>sign in</span>
 										</a>

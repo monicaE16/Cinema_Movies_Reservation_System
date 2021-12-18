@@ -25,9 +25,7 @@ const Signin= () => {
 								<input id="remember" name="remember" type="checkbox" checked="checked"/>
 								<label for="remember">Remember Me</label>
 							</div>
-
 							<button class="sign__btn" type="button">Sign in</button>
-
 							<span class="sign__text">Don't have an account? <a href='/SignUp'>Sign up!</a></span>
 						</form>
 					</div>

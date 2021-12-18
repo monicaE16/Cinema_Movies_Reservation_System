@@ -10,6 +10,7 @@ import Home from "./views/home";
 import Signin from "./views/signin";
 import Signup from "./views/signup";
 import Movie from "./views/movie";
+import Addmovie from "./views/addmovie";
 function App() {
 	return (
 		<Router>
@@ -27,6 +28,9 @@ function App() {
 				</Routes>
 				<Routes>
 					<Route exact path="/movie" element={<Movie />} />
+				</Routes>
+				<Routes>
+					<Route exact path="/Add" element={<Addmovie />} />
 				</Routes>
 			</div>
 		</Router>
