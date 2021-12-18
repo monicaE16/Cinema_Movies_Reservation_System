@@ -10,20 +10,20 @@ function Header() {
 						<div className="row">
 							<div className="col-12">
 								<div className="header__content">
-									<a href="/" className="header__logo">
+									<a href="/home" className="header__logo">
 										<img src="img/logo.png" alt="" height="100%" />
 									</a>
 
 									<ul className="header__nav">
 										<li className="header__nav-item">
 											<a
-												className="dropdown-toggle header__nav-link"
-												href="#"
-												role="button"
-												id="dropdownMenuHome"
-												data-toggle="dropdown"
-												aria-haspopup="true"
-												aria-expanded="false"
+												href="/home"
+												className="header__nav-link"
+												// role="button"
+												// id="dropdownMenuHome"
+												// data-toggle="dropdown"
+												// aria-haspopup="true"
+												// aria-expanded="false"
 											>
 												Home
 											</a>
@@ -37,7 +37,7 @@ function Header() {
 										{
 										  edited ===true &&
 										<li class="header__nav-item">
-											<a href="/Add" class="header__nav-link">
+											<a href="/Add" className="header__nav-link">
 												Add Movie
 											</a>
 										</li>

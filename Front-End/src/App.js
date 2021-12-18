@@ -18,7 +18,7 @@ function App() {
 
 			<div className="App">
 				<Routes>
-					<Route exact path="/" element={<Home />} />
+					<Route exact path="/Home" element={<Home />} />
 				</Routes>
 				<Routes>
 					<Route exact path="/SignIn" element={<Signin />} />
@@ -27,7 +27,7 @@ function App() {
 					<Route exact path="/SignUp" element={<Signup />} />
 				</Routes>
 				<Routes>
-					<Route exact path="/movie" element={<Movie />} />
+					<Route exact path="/Movie" element={<Movie />} />
 				</Routes>
 				<Routes>
 					<Route exact path="/Add" element={<Addmovie />} />

@@ -3,7 +3,7 @@ import React from "react";
 import Header from "../components/header";
 import MovieItem from "../components/movie_item";
 import Room1 from "../components/room1";
-import Room2 from "../components/room2";
+import Room from "../components/room";
 
 const Home = () => {
 	return (
@@ -57,8 +57,7 @@ const Home = () => {
 					</div>
 				</div>
 			</section>
-			<Room1></Room1>
-			<Room2></Room2>
+			<Room></Room>
 		</div>
 	);
 };
