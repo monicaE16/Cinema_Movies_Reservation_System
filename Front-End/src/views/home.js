@@ -2,36 +2,50 @@ import React from "react";
 
 import Header from "../components/header";
 import MovieItem from "../components/movie_item";
+import Room1 from "../components/room1";
+import Room2 from "../components/room2";
 
 const Home = () => {
 	return (
 		<div>
 			<Header></Header>
 
-			<section class="home">
-				<div class="owl-carousel home__bg">
-					<div class="item home__cover" data-bg="img/home/home__bg.jpg"></div>
-					<div class="item home__cover" data-bg="img/home/home__bg2.jpg"></div>
-					<div class="item home__cover" data-bg="img/home/home__bg3.jpg"></div>
-					<div class="item home__cover" data-bg="img/home/home__bg4.jpg"></div>
+			<section className="home">
+				<div className="owl-carousel home__bg">
+					<div
+						className="item home__cover"
+						data-bg="img/home/home__bg.jpg"
+					></div>
+					<div
+						className="item home__cover"
+						data-bg="img/home/home__bg2.jpg"
+					></div>
+					<div
+						className="item home__cover"
+						data-bg="img/home/home__bg3.jpg"
+					></div>
+					<div
+						className="item home__cover"
+						data-bg="img/home/home__bg4.jpg"
+					></div>
 				</div>
 				{/* <!-- end home bg --> */}
-				<div class="container">
-					<div class="row">
-						<div class="col-12">
-							<h1 class="home__title">
+				<div className="container">
+					<div className="row">
+						<div className="col-12">
+							<h1 className="home__title">
 								<b>حاليا بدور العرض</b>
 							</h1>
-							<button class="home__nav home__nav--prev" type="button">
-								<i class="icon ion-ios-arrow-round-back"></i>
+							<button className="home__nav home__nav--prev" type="button">
+								<i className="icon ion-ios-arrow-round-back"></i>
 							</button>
-							<button class="home__nav home__nav--next" type="button">
-								<i class="icon ion-ios-arrow-round-forward"></i>
+							<button className="home__nav home__nav--next" type="button">
+								<i className="icon ion-ios-arrow-round-forward"></i>
 							</button>
 						</div>
 
-						<div class="col-12">
-							<div class="owl-carousel home__carousel">
+						<div className="col-12">
+							<div className="owl-carousel home__carousel">
 								<MovieItem title="I love U" cover="img/covers/cover.jpg" />
 								<MovieItem title="I love U" cover="img/covers/cover2.jpg" />
 								<MovieItem title="I love U" cover="img/covers/cover3.jpg" />
@@ -43,6 +57,8 @@ const Home = () => {
 					</div>
 				</div>
 			</section>
+			<Room1></Room1>
+			<Room2></Room2>
 		</div>
 	);
 };
