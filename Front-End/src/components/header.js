@@ -3,20 +3,20 @@ import React from "react";
 function Header() {
 	return (
 		<div>
-			<header class="header">
-				<div class="header__wrap">
-					<div class="container">
-						<div class="row">
-							<div class="col-12">
-								<div class="header__content">
-									<a href="index.html" class="header__logo">
+			<header className="header">
+				<div className="header__wrap">
+					<div className="container">
+						<div className="row">
+							<div className="col-12">
+								<div className="header__content">
+									<a href="index.html" className="header__logo">
 										<img src="img/logo.png" alt="" height="100%" />
 									</a>
 
-									<ul class="header__nav">
-										<li class="header__nav-item">
+									<ul className="header__nav">
+										<li className="header__nav-item">
 											<a
-												class="dropdown-toggle header__nav-link"
+												className="dropdown-toggle header__nav-link"
 												href="#"
 												role="button"
 												id="dropdownMenuHome"
@@ -28,25 +28,25 @@ function Header() {
 											</a>
 										</li>
 
-										<li class="header__nav-item">
-											<a href="faq.html" class="header__nav-link">
+										<li className="header__nav-item">
+											<a href="faq.html" className="header__nav-link">
 												About
 											</a>
 										</li>
 									</ul>
 
-									<div class="header__auth">
-										<button class="header__search-btn" type="button">
-											<i class="icon ion-ios-search"></i>
+									<div className="header__auth">
+										<button className="header__search-btn" type="button">
+											<i className="icon ion-ios-search"></i>
 										</button>
 
-										<a href="signin.html" class="header__sign-in">
-											<i class="icon ion-ios-log-in"></i>
+										<a href="signin.html" className="header__sign-in">
+											<i className="icon ion-ios-log-in"></i>
 											<span>sign in</span>
 										</a>
 									</div>
 
-									<button class="header__btn" type="button">
+									<button className="header__btn" type="button">
 										<span></span>
 										<span></span>
 										<span></span>
@@ -57,11 +57,11 @@ function Header() {
 					</div>
 				</div>
 
-				<form action="#" class="header__search">
-					<div class="container">
-						<div class="row">
-							<div class="col-12">
-								<div class="header__search-content">
+				<form action="#" className="header__search">
+					<div className="container">
+						<div className="row">
+							<div className="col-12">
+								<div className="header__search-content">
 									<input
 										type="text"
 										placeholder="Search for a movie, TV Series that you are looking for"
