@@ -2,7 +2,6 @@ import React from "react";
 
 import Header from "../components/header";
 import MovieItem from "../components/movie_item";
-import Room1 from "../components/room1";
 import Room from "../components/room";
 
 const Home = () => {

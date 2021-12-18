@@ -1,3 +1,14 @@
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+:root {
+	/* main colors */
+	--clr-primary-dark1: #2a0944;
+	--clr-primary-dark2: #3b185f;
+	--clr-primary-purple: #a12568;
+	--clr-primary-yellow: #fec260;
+	--clr-primary-white: #ffffff;
+	--clr-primary-black: #000000;
+}
+
 .body {
 	background-color: var(--clr-primary-dark1);
 	color: #fff;
@@ -17,6 +28,17 @@
 	list-style-type: none;
 	display: flex;
 	justify-content: space-between;
+}
+
+.showcase li {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 10px;
+}
+
+.showcase li small {
+	margin-left: 2px;
 }
 
 .screen {
@@ -69,4 +91,12 @@ p.text {
 
 p.text span {
 	color: #6feaf6;
+}
+.seat {
+	background-color: var(--clr-primary-dark2);
+	height: 20px;
+	width: 22px;
+	margin: 3px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
 }
