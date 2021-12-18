@@ -3366,7 +3366,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 	background: transparent;
 	color: rgba(255, 255, 255, 0.5);
 }
-.sign__btn {
+.sign__btn,
+.uploadvideo {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -3763,4 +3764,38 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 	background-image: -webkit-linear-gradient(180deg, #ff55a5 0%, #ff5860 100%);
 	background-image: -ms-linear-gradient(180deg, #ff55a5 0%, #ff5860 100%);
 	background-image: linear-gradient(180deg, #ff55a5 0%, #ff5860 100%);
+}
+.addmovie{
+	background-color: var(--clr-primary-dark1);
+}
+.uploadvideo 
+{
+    width: 42%;
+    margin-right: 39%;
+}
+.upload-content
+{
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		min-height: 100vh;
+		padding: 40px 0;
+		
+
+}
+.upload_form{
+	margin-top: 80px;
+	width:50%;
+	background-color: var(--clr-primary-dark2);
+}
+.upload 
+{
+	-webkit-text-fill-color: var(--clr-primary-black);
+	background-color: var(--clr-primary-white); 
+}
+.sign__group p.title {
+	color: var(--clr-primary-white);
+	text-align:left;
 }

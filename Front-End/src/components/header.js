@@ -9,7 +9,7 @@ function Header() {
 						<div className="row">
 							<div className="col-12">
 								<div className="header__content">
-									<a href="index.html" className="header__logo">
+									<a href="/" className="header__logo">
 										<img src="img/logo.png" alt="" height="100%" />
 									</a>
 
@@ -33,6 +33,11 @@ function Header() {
 												About
 											</a>
 										</li>
+										<li class="header__nav-item">
+											<a href="/Add" class="header__nav-link">
+												Add Movie
+											</a>
+										</li>
 									</ul>
 
 									<div className="header__auth">
@@ -40,7 +45,7 @@ function Header() {
 											<i className="icon ion-ios-search"></i>
 										</button>
 
-										<a href="signin.html" className="header__sign-in">
+										<a href="/SignIn" className="header__sign-in">
 											<i className="icon ion-ios-log-in"></i>
 											<span>sign in</span>
 										</a>
