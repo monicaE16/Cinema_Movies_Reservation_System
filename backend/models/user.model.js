@@ -7,9 +7,10 @@ function model(sequelize) {
         username: { type: DataTypes.STRING, allowNull: false ,primaryKey: true},
         firstName: { type: DataTypes.STRING, allowNull: false },
         lastName: { type: DataTypes.STRING, allowNull: false },
-        role: { type: DataTypes.ENUM(['user', 'manager' , 'admin']), allowNull: false },
+        email:{ type: DataTypes.STRING, allowNull: false },
+        role: { type: DataTypes.ENUM(['user', 'manager' , 'admin']), allowNull: false,defaultValue: "user" },
         hash: { type: DataTypes.STRING, allowNull: false },
-        is_approved: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false}
+        requesting_managerial: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false}
     };
 
     const options = {

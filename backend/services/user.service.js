@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs');
 const db = require('_helpers/db');
 
 module.exports = {
+    approveManager,
+    getFutureManagers,
     authenticate,
     getAll,
     getById,
@@ -11,7 +13,17 @@ module.exports = {
     update,
     delete: _delete
 };
-
+async function approveManager(name){
+    console.log(name)
+    const user = await db.User.findOne({ where: { username:name } });
+    if (!user )throw 'Username is incorrect';
+    console.log("leeeh")
+    user.set({
+        requesting_managerial: "False",
+        role: "manager"
+      })
+      return await user.save();
+}
 async function authenticate({ username, password }) {
     const user = await db.User.scope('withHash').findOne({ where: { username } });
 
@@ -44,6 +56,10 @@ async function create(params) {
 
     // save user
     await db.User.create(params);
+}
+async function getFutureManagers(params) {
+    console.log("hksfk")
+    return await db.User.findAll({attributes: ['username', 'Email'],where:{requesting_managerial:1}})
 }
 
 async function update(id, params) {

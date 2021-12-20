@@ -35,8 +35,9 @@ function registerSchema(req, res, next) {
         username: Joi.string().required(),
         firstName: Joi.string().required(),
         lastName:  Joi.string().required(),
-        role: Joi.string().required(),
-        password: Joi.string().min(6).required()
+        email:Joi.string().required(),
+        password: Joi.string().min(6).required(),
+        requesting_managerial: Joi.bool().required()
     });
     validateRequest(req, next, schema);
 }
