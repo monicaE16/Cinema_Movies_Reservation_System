@@ -91,6 +91,7 @@ const Seating = (props) => {
 	};
 	return (
 		<div className="body">
+			<h1>احجز تذكرتك الان</h1>
 			<ul className="showcase">
 				<li>
 					<div className="seat"></div>
@@ -128,10 +129,18 @@ const Seating = (props) => {
 					</tbody>
 				</table>
 			</div>
-			<p className="text">
-				You have selected <span id="count">{reserved.length}</span> seats for a
-				price of $<span id="total">{reserved.length * 50}</span>
-			</p>
+			{reserved.length === 0 || (
+				<p className="text">
+					انت اخترت <span id="count">{reserved.length}</span> اماكن السعر{" "}
+					<span id="total">{reserved.length * 50}</span> جنيها
+				</p>
+			)}
+
+			{reserved.length === 0 || (
+				<button className="sign__btn" id="reserve" type="button">
+					احجزلي
+				</button>
+			)}
 		</div>
 	);
 };
