@@ -32,12 +32,11 @@ function authenticate(req, res, next) {
 
 function registerSchema(req, res, next) {
     const schema = Joi.object({
-        firstName: Joi.string().required(),
-        lastName: Joi.string().required(),
         username: Joi.string().required(),
-        password: Joi.string().min(6).required(),
-        is_developer: Joi.boolean().required(),
-        practise: Joi.string().required(),
+        firstName: Joi.string().required(),
+        lastName:  Joi.string().required(),
+        role: Joi.string().required(),
+        password: Joi.string().min(6).required()
     });
     validateRequest(req, next, schema);
 }
