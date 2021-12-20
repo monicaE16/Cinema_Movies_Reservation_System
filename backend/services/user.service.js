@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const db = require('_helpers/db');
 
 module.exports = {
+    deleteByUserName,
     approveManager,
     getFutureManagers,
     authenticate,
@@ -11,6 +12,7 @@ module.exports = {
     getById,
     create,
     update,
+    deleteByUserName,
     delete: _delete
 };
 async function approveManager(name){
@@ -85,6 +87,11 @@ async function update(id, params) {
 
 async function _delete(id) {
     const user = await getUser(id);
+    await user.destroy();
+}
+async function deleteByUserName(name) {
+    const user = await db.User.findOne({where:{username:name}});
+    if (!user )throw 'Username is incorrect';
     await user.destroy();
 }
 
