@@ -3,6 +3,7 @@ import ReactPlayer from "react-player/youtube";
 
 import Header from "../components/header";
 import Room from "../components/room";
+import CreditCard from "../components/credit_card";
 
 const Movie = () => {
 	const title = "I dream In Another Language";
@@ -80,6 +81,7 @@ const Movie = () => {
 				</div>
 			</section>
 			<Room></Room>
+			<CreditCard />
 		</div>
 	);
 };
