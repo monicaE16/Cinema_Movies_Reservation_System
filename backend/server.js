@@ -12,6 +12,7 @@ app.use(cors());
 // api routes
 app.use('/users', require('./controllers/user.controller'));
 app.use('/admins', require('./controllers/admin.controller'));
+app.use('/movies', require('./controllers/movie.controller'));
 
 // global error handler
 app.use(errorHandler);

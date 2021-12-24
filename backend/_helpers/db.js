@@ -20,6 +20,13 @@ async function initialize() {
     db.Movie = require('../models/movie.model')(sequelize);
     db.Ticket = require('../models/ticket.model')(sequelize);
 
+
+
+    db.Ticket.hasOne(db.Movie, {foreignKey: 'id',sourceKey: 'movie_id'});
+    db.Movie.belongsTo(db.Ticket, {foreignKey: 'id',targetKey: 'movie_id'});
+
+
+
     // sync all models with database
     await sequelize.sync();
 }

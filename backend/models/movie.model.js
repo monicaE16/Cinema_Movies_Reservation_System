@@ -12,9 +12,11 @@ function model(sequelize) {
         empty_seats_count: {type: DataTypes.INTEGER, allowNull: false},
         poster_url: {type: DataTypes.STRING, allowNull: false, defaultValue: "https://image.flaticon.com/icons/png/512/2583/2583338.png"},
         trailer_url: {type: DataTypes.STRING, allowNull: false, defaultValue: "https://image.flaticon.com/icons/png/512/2583/2583338.png"},
-        created_by: { type: DataTypes.STRING, allowNull: false,references:  {model: 'users',key: 'username'}},
+        created_by: { type: DataTypes.STRING, allowNull: true,references:  {model: 'users',key: 'username'}},
+
 
     };
 
-    return sequelize.define('Movie', attributes);
+    Movie=sequelize.define('Movie', attributes);
+    return Movie
 }
