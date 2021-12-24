@@ -1,6 +1,9 @@
 import React from "react";
+import ReactPlayer from "react-player/youtube";
 
 import Header from "../components/header";
+import Room from "../components/room";
+import CreditCard from "../components/credit_card";
 
 const Movie = () => {
 	const title = "I dream In Another Language";
@@ -11,69 +14,74 @@ const Movie = () => {
 		<div>
 			<Header></Header>
 			{/* <!-- title --> */}
-			<br></br>
-			<br></br>
-			<br></br>
-			<br></br>
-			<br></br>
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<h1 class="details__title">{title}</h1>
-					</div>
-					{/* <!-- end title --> */}
 
-					{/* <!-- content --> */}
-					<div class="col-12 col-xl-6">
-						<div class="card card--details">
-							<div class="row">
-								{/* <!-- card cover --> */}
-								<div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-5">
-									<div class="card__cover">
-										<img src="img/covers/cover2.jpg" alt="" />
+			<section class="section details">
+				<div className="container">
+					<div className="row">
+						<div className="col-12">
+							<h1 className="details__title">{title}</h1>
+						</div>
+						{/* <!-- end title --> */}
+
+						{/* <!-- content --> */}
+						<div className="col-12 col-xl-6">
+							<div className="card card--details">
+								<div className="row">
+									{/* <!-- card cover --> */}
+									<div className="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-5">
+										<div className="card__cover">
+											<img src="img/covers/cover2.jpg" alt="" />
+										</div>
 									</div>
-								</div>
-								{/* <!-- end card cover --> */}
+									{/* <!-- end card cover --> */}
 
-								{/* <!-- card content --> */}
-								<div class="col-12 col-sm-8 col-md-8 col-lg-9 col-xl-7">
-									<div class="card__content">
-										<div class="card__wrap">
-											<span class="card__rate">
-												<i class="icon ion-ios-star"></i>8.4
-											</span>
+									{/* <!-- card content --> */}
+									<div className="col-12 col-sm-8 col-md-8 col-lg-9 col-xl-7">
+										<div className="card__content">
+											<div className="card__wrap">
+												<span className="card__rate">
+													<i className="icon ion-ios-star"></i>8.4
+												</span>
 
-											<ul class="card__list">
-												<li>HD</li>
-												<li>16+</li>
+												<ul className="card__list">
+													<li>HD</li>
+													<li>16+</li>
+												</ul>
+											</div>
+
+											<ul className="card__meta">
+												<li>
+													<span>Genre:</span> <a href="#">Action</a>
+													<a href="#">Triler</a>
+												</li>
+
+												<li>
+													<span>Running time:</span> 120 min
+												</li>
 											</ul>
-										</div>
 
-										<ul class="card__meta">
-											<li>
-												<span>Genre:</span> <a href="#">Action</a>
-												<a href="#">Triler</a>
-											</li>
-
-											<li>
-												<span>Running time:</span> 120 min
-											</li>
-										</ul>
-
-										<div class="card__description card__description--details">
-											{description}
+											<div className="card__description card__description--details">
+												{description}
+											</div>
 										</div>
 									</div>
+									{/* <!-- end card content --> */}
 								</div>
-								{/* <!-- end card content --> */}
 							</div>
+						</div>
+						<div className="col-12 col-xl-6 col-sm-12 ">
+							<ReactPlayer
+								className="player"
+								width="90%"
+								height="90%"
+								url="https://www.youtube.com/watch?v=JfVOs4VSpmA"
+							/>
 						</div>
 					</div>
 				</div>
-				<div class="col-12 col-xl-6">
-					<h2>video in here</h2>
-				</div>
-			</div>
+			</section>
+			<Room></Room>
+			<CreditCard />
 		</div>
 	);
 };
