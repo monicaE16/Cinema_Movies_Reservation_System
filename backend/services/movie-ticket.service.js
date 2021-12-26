@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('_helpers/db');
 var Sequelize = require('sequelize');
+const movieService = require('./movie.service');
 const { user, password, database } = config.database;
 const sequelize = new Sequelize(database, user, password, { dialect: 'mysql' });
 
@@ -33,17 +34,24 @@ async function reserveSeat(username,movie, seat) {
         "movie_id": movie,
         "seat_number": seat
     }
-    return await db.Ticket.create(data);
+    if (await db.Ticket.findOne({ where: { movie_id:movie, seat_number: seat} })) {
+        throw 'Ticket is already taken';
+    }
+    else {
+        await db.Ticket.create(data);
+        await movieService.updateSeatsCount(movie, 'dec')
+    }
 }
 
 async function cancelReservation(username,movie, seat) {
     const ticket = await getSeat(username, movie, seat);
     if (!ticket ) throw 'No such reservation';
-    else await ticket.destroy();
+    else
+    {
+        await ticket.destroy();
+        await movieService.updateSeatsCount(movie, 'inc')
+    } 
 }
-
-
-
 
 
 // helper functions
@@ -57,5 +65,18 @@ async function getSeat(username_, movie, seat) {
         }
       });
     if (!ticket) throw 'Reservation not found';
-    return ticket;
+    else return ticket;
 }
+
+// async function UpdateSeats(id, op) {
+
+    
+//     const movie = await movieService.getMovieById(id);
+//     if(op == 'dec')
+//         movie.empty_seats_count = movie.empty_seats_count--;
+//     else if (op == 'inc')
+//         movie.empty_seats_count = movie.empty_seats_count++;
+//     await movie.save();
+// }
+
+
