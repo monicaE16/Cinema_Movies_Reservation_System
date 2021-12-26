@@ -13,8 +13,6 @@ function model(sequelize) {
         poster_url: {type: DataTypes.STRING, allowNull: false, defaultValue: "https://image.flaticon.com/icons/png/512/2583/2583338.png"},
         trailer_url: {type: DataTypes.STRING, allowNull: false, defaultValue: "https://image.flaticon.com/icons/png/512/2583/2583338.png"},
         created_by: { type: DataTypes.STRING, allowNull: true,references:  {model: 'users',key: 'username'}},
-
-
     };
 
     Movie=sequelize.define('Movie', attributes);
