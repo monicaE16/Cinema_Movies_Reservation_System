@@ -9,7 +9,8 @@ const movie_ticketService = require('services/movie-ticket.service');
 // routes
 router.get('/getmovies',  getMovies);
 router.get('/getallmovies',  getAllMovies);
-router.post('/movies/new', authorizeManager, CreateSchema, createMovie);
+router.post('/new', authorizeManager, UpdateSchema, createMovie);
+router.post('/update/:id', authorizeManager, CreateSchema, updateMovie);
 module.exports = router;
 
 function CreateSchema(req, res, next) {
@@ -21,6 +22,21 @@ function CreateSchema(req, res, next) {
         room: Joi.string().required(),
         empty_seats_count: Joi.number().required(),
         price: Joi.number().required(),
+        poster_url: Joi.string().uri(),
+        trailer_url: Joi.string().uri(),
+        
+    });
+    validateRequest(req, next, schema);
+}
+function UpdateSchema(req, res, next) {
+    const schema = Joi.object({
+        title: Joi.string(),
+        date: Joi.date(),
+        start_time:  Joi.date().timestamp(),
+        end_time:Joi.date().timestamp(),
+        room: Joi.string(),
+        empty_seats_count: Joi.number(),
+        price: Joi.number(),
         poster_url: Joi.string().uri(),
         trailer_url: Joi.string().uri(),
         
@@ -45,5 +61,11 @@ function createMovie(req, res, next) {
 	movieService
 		.create(req.body)
 		.then(() => res.json({ message: "Creation successful" }))
+		.catch(next);
+}
+function updateMovie(req, res, next) {
+	movieService
+		.update(req.body)
+		.then(() => res.json({ message: "Update successful" }))
 		.catch(next);
 }

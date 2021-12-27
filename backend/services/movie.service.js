@@ -5,7 +5,9 @@ const db = require('_helpers/db');
 
 module.exports = {
     getMovies,
-    updateSeatsCount
+    updateSeatsCount,
+    create,
+    update
 };
 async function getMovies() {
     movies=await db.Movie.findAll();
@@ -28,3 +30,32 @@ async function updateSeatsCount(id_, op) {
     
 }
 
+async function create(data) {
+    if (data.start_time<=data.end_time)
+    {
+        throw 'start time must be earlier than end time'
+    }
+    if (data.date< Date.now())
+    {
+        throw 'please use a future date'
+    }
+    else {
+        await db.Movie.create(data);
+    }
+}
+async function update(data) {
+    if (data.start_time<=data.end_time)
+    {
+        throw 'start time must be earlier than end time'
+    }
+    if (data.date< Date.now())
+    {
+        throw 'please use a future date'
+    }
+    else {
+        await db.Movie.update(
+           data,
+            { where: { id: data.id } }
+        );
+    }
+}
