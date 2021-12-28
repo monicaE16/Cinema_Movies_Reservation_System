@@ -6,19 +6,20 @@ const authorizeAdmin = require('_middleware/authorizeAdmin')
 const authorizeManager = require('_middleware/authorizeManager')
 const movieService = require('services/movie.service');
 const movie_ticketService = require('services/movie-ticket.service');
+const { required } = require('joi');
 // routes
 router.get('/getmovies',  getMovies);
 router.get('/getallmovies',  getAllMovies);
-router.post('/new', authorizeManager, UpdateSchema, createMovie);
-router.post('/update/:id', authorizeManager, CreateSchema, updateMovie);
+router.post('/new', authorizeManager(), CreateSchema, createMovie);
+router.post('/update/:id', authorizeManager(), UpdateSchema, updateMovie);
 module.exports = router;
 
 function CreateSchema(req, res, next) {
     const schema = Joi.object({
         title: Joi.string().required(),
         date: Joi.date().required(),
-        start_time:  Joi.date().timestamp().required(),
-        end_time:Joi.date().timestamp().required(),
+        start_time:  Joi.string().required(),
+        end_time:Joi.string().required(),
         room: Joi.string().required(),
         empty_seats_count: Joi.number().required(),
         price: Joi.number().required(),
@@ -26,14 +27,15 @@ function CreateSchema(req, res, next) {
         trailer_url: Joi.string().uri(),
         
     });
+    console.log("here");
     validateRequest(req, next, schema);
 }
 function UpdateSchema(req, res, next) {
     const schema = Joi.object({
         title: Joi.string(),
         date: Joi.date(),
-        start_time:  Joi.date().timestamp(),
-        end_time:Joi.date().timestamp(),
+        start_time: Joi.string(),
+        end_time:Joi.string(),
         room: Joi.string(),
         empty_seats_count: Joi.number(),
         price: Joi.number(),
@@ -65,7 +67,7 @@ function createMovie(req, res, next) {
 }
 function updateMovie(req, res, next) {
 	movieService
-		.update(req.body)
+		.update(req.body, req.params.id)
 		.then(() => res.json({ message: "Update successful" }))
 		.catch(next);
 }

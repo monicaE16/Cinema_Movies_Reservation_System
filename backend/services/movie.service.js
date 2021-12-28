@@ -31,11 +31,12 @@ async function updateSeatsCount(id_, op) {
 }
 
 async function create(data) {
-    if (data.start_time<=data.end_time)
+   
+    if (data.start_time>data.end_time)
     {
         throw 'start time must be earlier than end time'
     }
-    if (data.date< Date.now())
+    if (Date.parse(data.date)< Date.now())
     {
         throw 'please use a future date'
     }
@@ -43,8 +44,8 @@ async function create(data) {
         await db.Movie.create(data);
     }
 }
-async function update(data) {
-    if (data.start_time<=data.end_time)
+async function update(data, movie_id) {
+    if (data.start_time>data.end_time)
     {
         throw 'start time must be earlier than end time'
     }
@@ -55,7 +56,7 @@ async function update(data) {
     else {
         await db.Movie.update(
            data,
-            { where: { id: data.id } }
+            { where: { id: movie_id } }
         );
     }
 }
