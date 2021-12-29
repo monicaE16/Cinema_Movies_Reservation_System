@@ -3453,7 +3453,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 	padding: 40px 0;
 }
 .page-404__content {
-	background-color: #2b2b31;
+	background-color: var(--clr-primary-dark2);
 	-webkit-box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.3);
 	box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.3);
 	display: flex;
@@ -3806,4 +3806,21 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .sign__group p.title {
 	color: var(--clr-primary-white);
 	text-align: left;
+}
+
+#PaymentForm {
+	display: block;
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	line-height: 2;
+	background-color: var(--clr-primary-dark1);
+	right: 24%;
+}
+#PaymentForm input {
+	margin: 5px;
+}
+::placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: var(--clr-primary-dark1);
+	opacity: 1; /* Firefox */
 }

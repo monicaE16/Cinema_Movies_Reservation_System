@@ -11,6 +11,7 @@ import Signin from "./views/signin";
 import Signup from "./views/signup";
 import Movie from "./views/movie";
 import Addmovie from "./views/addmovie";
+import Error from "./views/error";
 function App() {
 	return (
 		<Router>
@@ -19,18 +20,16 @@ function App() {
 			<div className="App">
 				<Routes>
 					<Route exact path="/Home" element={<Home />} />
-				</Routes>
-				<Routes>
+
 					<Route exact path="/SignIn" element={<Signin />} />
-				</Routes>
-				<Routes>
+
 					<Route exact path="/SignUp" element={<Signup />} />
-				</Routes>
-				<Routes>
+
 					<Route exact path="/Movie" element={<Movie />} />
-				</Routes>
-				<Routes>
+
 					<Route exact path="/Add" element={<Addmovie />} />
+
+					<Route exact path="*" element={<Error />} />
 				</Routes>
 			</div>
 		</Router>
