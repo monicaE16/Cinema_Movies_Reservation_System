@@ -13,6 +13,7 @@ import Movie from "./views/movie";
 import Addmovie from "./views/addmovie";
 import Error from "./views/error";
 import Payment from "./views/payment";
+import Reservation from "./views/reservations";
 function App() {
 	return (
 		<Router>
@@ -30,6 +31,7 @@ function App() {
 
 					<Route exact path="/Add" element={<Addmovie />} />
 					<Route exact path="/Payment" element={<Payment />} />
+					<Route exact path="/Reservation" element={<Reservation />} />
 
 					<Route exact path="*" element={<Error />} />
 				</Routes>

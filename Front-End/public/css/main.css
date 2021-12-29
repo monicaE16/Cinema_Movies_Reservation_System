@@ -49,6 +49,9 @@ Primary use:	FlixGo Template
 	--clr-primary-black: #000000;
 }
 
+* {
+	box-sizing: border-box;
+}
 html {
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
@@ -59,7 +62,7 @@ body {
 }
 body {
 	font-family: "Ubuntu", sans-serif;
-	background-color: var(--clr-primary-dark1)!important;
+	background-color: var(--clr-primary-dark1) !important;
 	font-weight: normal;
 	-webkit-font-smoothing: antialiased;
 }
@@ -1248,7 +1251,7 @@ ul {
 ==============================*/
 .card {
 	margin-bottom: 30px;
-	background-color: transparent!important;
+	background-color: transparent !important;
 }
 .card__cover {
 	position: relative;
@@ -3808,47 +3811,39 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 	color: var(--clr-primary-white);
 	text-align: left;
 }
-i.edit-icon 
-{
+i.edit-icon {
 	float: right;
 }
-i.edit-icon:hover
-{
-	cursor:pointer;
+i.edit-icon:hover {
+	cursor: pointer;
 }
-a 
-{
-	text-decoration: none!important;
+a {
+	text-decoration: none !important;
 }
 .modal-content {
 	background-color: var(--clr-primary-dark2) !important;
-	width: 80%!important;
-  }
-  .modal-title ,
-  button.btn-close 
-  {
-	  color:var(--clr-primary-white)!important;
-  }
-  .modalform
-  {
-	  width: 100%;
-	  text-align: center;
-	  display: flex;
-	  flex-direction: column;
-  }
-  p.title.modaltitle {
-	 width: 20%;
-	  align-items: flex-end!important;
-	
+	width: 80% !important;
 }
-.editmovie
-{
+.modal-title,
+button.btn-close {
+	color: var(--clr-primary-white) !important;
+}
+.modalform {
+	width: 100%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+}
+p.title.modaltitle {
+	width: 20%;
+	align-items: flex-end !important;
+}
+.editmovie {
 	background-color: var(--clr-primary-dark2);
 }
-.modalbutton
-{
+.modalbutton {
 	width: 30%;
-	border: none!important;
+	border: none !important;
 }
 
 #PaymentForm {
@@ -3876,6 +3871,20 @@ a
 	position: relative;
 	left: 19.5%;
 }
-.rccs{
-	width: 60%!important;
+#reserve {
+	width: 20%;
+	position: relative;
+	left: 35%;
+}
+
+.rccs {
+	width: 60% !important;
+}
+
+.Reservation-Card {
+	background-color: var(--clr-primary-dark2);
+	width: 70%;
+	margin-left: 10px;
+	z-index: 2;
+	box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.3);
 }
