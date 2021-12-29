@@ -12,6 +12,7 @@ import Signup from "./views/signup";
 import Movie from "./views/movie";
 import Addmovie from "./views/addmovie";
 import Error from "./views/error";
+import Payment from "./views/payment";
 function App() {
 	return (
 		<Router>
@@ -28,6 +29,7 @@ function App() {
 					<Route exact path="/Movie" element={<Movie />} />
 
 					<Route exact path="/Add" element={<Addmovie />} />
+					<Route exact path="/Payment" element={<Payment />} />
 
 					<Route exact path="*" element={<Error />} />
 				</Routes>

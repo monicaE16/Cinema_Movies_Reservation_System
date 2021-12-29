@@ -14,7 +14,7 @@ const Movie = () => {
 			<Header></Header>
 			{/* <!-- title --> */}
 
-			<section class="section details">
+			<section className="section details">
 				<div className="container">
 					<div className="row">
 						<div className="col-12">

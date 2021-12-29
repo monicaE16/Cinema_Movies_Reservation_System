@@ -3818,9 +3818,18 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 #PaymentForm input {
 	margin: 5px;
+	border: 5px var(--clr-primary-purple);
+	border-radius: 5px;
+	padding-left: 2px;
 }
 ::placeholder {
 	/* Chrome, Firefox, Opera, Safari 10.1+ */
 	color: var(--clr-primary-dark1);
 	opacity: 1; /* Firefox */
+}
+
+#buy {
+	width: 20%;
+	position: relative;
+	left: 19.5%;
 }
