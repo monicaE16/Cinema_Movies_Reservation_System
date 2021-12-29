@@ -3,52 +3,59 @@ import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 
 const CreditCard = () => {
-	const [data, setData] = useState({
-		cvc: "",
-		expiry: "",
-		name: "",
-		number: "",
-	});
-	const handleInputChange = (e) => {
-		setData({
-			...data,
-			[e.target.name]: e.target.value,
-		});
-	};
+	const [number, setNumber] = useState("");
+	const [name, setName] = useState("");
+	const [expiry, setExpiry] = useState("");
+	const [cvc, setCvc] = useState("");
+	const [focus, setFocus] = useState("");
 
 	return (
-		<div id="PaymentForm">
+		<div className="row">
 			<Cards
-				cvc={data.cvc}
-				expiry={data.expiry}
-				focus={data.focus}
-				name={data.name}
-				number={data.number}
+				number={number}
+				name={name}
+				expiry={expiry}
+				cvc={cvc}
+				focused={focus}
+				className="col-5 col-lg-12"
 			/>
-			<form action="">
+			<form id="PaymentForm" className="col-2 " action="">
 				<input
-					type="number"
-					name="cvc"
-					placeholder="CVC"
-					onChange={handleInputChange}
+					type="tel"
+					name="number"
+					placeholder="Card Number"
+					value={number}
+					onChange={(e) => setNumber(e.target.value)}
+					onFocus={(e) => setFocus(e.target.name)}
+					maxLength="16"
 				/>
-				<input
-					type="date"
-					name="expiry"
-					placeholder="Expire Date"
-					onChange={handleInputChange}
-				/>
+
 				<input
 					type="text"
 					name="name"
-					placeholder="Your Name"
-					onChange={handleInputChange}
+					placeholder="Name"
+					value={name}
+					onChange={(e) => setName(e.target.value)}
+					onFocus={(e) => setFocus(e.target.name)}
 				/>
+
 				<input
-					type="number"
-					name="number"
-					placeholder="Card Number"
-					onChange={handleInputChange}
+					type="text"
+					name="expiry"
+					placeholder="MM/YY Expiry"
+					value={expiry}
+					onChange={(e) => setExpiry(e.target.value)}
+					onFocus={(e) => setFocus(e.target.name)}
+				/>
+
+				<input
+					type="tel"
+					name="cvc"
+					placeholder="CVC"
+					value={cvc}
+					maxLength="3"
+					onChange={(e) => setCvc(e.target.value)}
+					onFocus={(e) => setFocus(e.target.name)}
 				/>
 			</form>
 		</div>

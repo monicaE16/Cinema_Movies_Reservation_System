@@ -3,7 +3,6 @@ import ReactPlayer from "react-player/youtube";
 
 import Header from "../components/header";
 import Room from "../components/room";
-import CreditCard from "../components/credit_card";
 
 const Movie = () => {
 	const title = "I dream In Another Language";
@@ -15,7 +14,7 @@ const Movie = () => {
 			<Header></Header>
 			{/* <!-- title --> */}
 
-			<section class="section details">
+			<section className="section details">
 				<div className="container">
 					<div className="row">
 						<div className="col-12">
@@ -81,7 +80,6 @@ const Movie = () => {
 				</div>
 			</section>
 			<Room></Room>
-			<CreditCard />
 		</div>
 	);
 };
