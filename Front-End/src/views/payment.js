@@ -15,9 +15,6 @@ const Payment = () => {
 			<section className="home">
 				<div className="container">
 					<CreditCard />
-					<button className="sign__btn" type="button" id="buy">
-						Buy
-					</button>
 				</div>
 			</section>
 		</div>

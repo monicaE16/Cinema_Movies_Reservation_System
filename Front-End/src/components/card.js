@@ -14,12 +14,15 @@ const CardReservation = () => {
 						Date:
 					</Card.Text>
 					<Card.Text style={{ textAlign: "left", color: "white" }}>
-						Hour:
+						Start:
+					</Card.Text>
+					<Card.Text style={{ textAlign: "left", color: "white" }}>
+						End:
 					</Card.Text>
 					<Card.Text style={{ textAlign: "left", color: "white" }}>
 						Seat No.:
 					</Card.Text>
-					<button className="sign__btn" type="button" id="reserve">
+					<button className="sign__btn" type="button" id="cancel">
 						cancel
 					</button>
 				</Card.Body>
