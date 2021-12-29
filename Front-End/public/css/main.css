@@ -59,7 +59,7 @@ body {
 }
 body {
 	font-family: "Ubuntu", sans-serif;
-	background-color: var(--clr-primary-dark1);
+	background-color: var(--clr-primary-dark1)!important;
 	font-weight: normal;
 	-webkit-font-smoothing: antialiased;
 }
@@ -1248,6 +1248,7 @@ ul {
 ==============================*/
 .card {
 	margin-bottom: 30px;
+	background-color: transparent!important;
 }
 .card__cover {
 	position: relative;
@@ -3806,4 +3807,46 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .sign__group p.title {
 	color: var(--clr-primary-white);
 	text-align: left;
+}
+i.edit-icon 
+{
+	float: right;
+}
+i.edit-icon:hover
+{
+	cursor:pointer;
+}
+a 
+{
+	text-decoration: none!important;
+}
+.modal-content {
+	background-color: var(--clr-primary-dark2) !important;
+	width: 80%!important;
+  }
+  .modal-title ,
+  button.btn-close 
+  {
+	  color:var(--clr-primary-white)!important;
+  }
+  .modalform
+  {
+	  width: 100%;
+	  text-align: center;
+	  display: flex;
+	  flex-direction: column;
+  }
+  p.title.modaltitle {
+	 width: 20%;
+	  align-items: flex-end!important;
+	
+}
+.editmovie
+{
+	background-color: var(--clr-primary-dark2);
+}
+.modalbutton
+{
+	width: 30%;
+	border: none!important;
 }
