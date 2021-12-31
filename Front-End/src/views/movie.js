@@ -10,8 +10,6 @@ const Movie = () => {
 	const location = useLocation();
 	const { title, cover } = location.state;
 
-	// console.log(mess);
-	// const title = "I dream In Another Language";
 	const description =
 		"	It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.";
 
@@ -31,25 +29,27 @@ const Movie = () => {
 						<div className="col-12 col-xl-6">
 							<div className="card card--details">
 								<div className="row">
-									{/* <!-- card cover --> */}
 									<div className="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-5">
 										<div className="card__cover">
 											<img src={cover} alt="" />
 										</div>
 									</div>
-									{/* <!-- end card cover --> */}
 
-									{/* <!-- card content --> */}
 									<div className="col-12 col-sm-8 col-md-8 col-lg-9 col-xl-7">
 										<div className="card__content">
 											<ul className="card__meta">
 												<li>
-													<span>Genre:</span> <a>Action</a>
-													<a>Thriler</a>
+													<span>Price:</span> 120 L.E
+												</li>
+												<li>
+													<span>Date:</span> 25 december
+												</li>
+												<li>
+													<span>Start:</span> 22:00 pm
 												</li>
 
 												<li>
-													<span>Running time:</span> 120 min
+													<span>End:</span>00:00 am
 												</li>
 											</ul>
 

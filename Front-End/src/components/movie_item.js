@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const MovieItem = ({ title, cover }) => {
-	const [modalShow, setModalShow] = React.useState(false);
+	const [modalShow, setModalShow] = useState(false);
 
 	return (
 		<div className="item">
 			<div className="card card--big">
 				<Link to={"/movie"} state={{ title, cover }}>
 					<div className="card__cover">
-						<img src={cover} alt="" height="100%" width="100%" />
+						<img src={cover} alt="" />
 					</div>
 				</Link>
 				<div className="card__content">

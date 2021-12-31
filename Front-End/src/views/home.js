@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/header";
 import MovieItem from "../components/movie_item";
-
+import { getMovies } from "../API/movies";
 const Home = () => {
-	// const { state } = useLocation();
-	// const { mess } = state;
-
-	// console.log(mess);
+	const [movies, setMovies] = useState([]);
+	useEffect(() => {
+		getMovies()
+			.then((res) => setMovies(res))
+			.catch((e) => console.log(e));
+	}, []);
 	return (
 		<div>
 			<Header></Header>
@@ -47,12 +49,15 @@ const Home = () => {
 
 						<div className="col-12">
 							<div className="owl-carousel home__carousel">
-								<MovieItem title="I love U" cover="img/covers/cover.jpg" />
-								<MovieItem title="I love U" cover="img/covers/cover2.jpg" />
-								<MovieItem title="I love U" cover="img/covers/cover3.jpg" />
-								<MovieItem title="I love U" cover="img/covers/cover4.jpg" />
-								<MovieItem title="I love U" cover="img/covers/cover5.jpg" />
-								<MovieItem title="I love U" cover="img/covers/cover6.jpg" />
+								{movies.map((movie) => {
+									return (
+										<MovieItem
+											key={movie.id}
+											title={movie.title}
+											cover={movie.poster_url}
+										/>
+									);
+								})}
 							</div>
 						</div>
 					</div>
