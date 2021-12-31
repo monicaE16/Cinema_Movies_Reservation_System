@@ -9,8 +9,8 @@ const movie_ticketService = require('services/movie-ticket.service');
 const { required } = require('joi');
 // routes
 router.get('/getmovies',  getMovies);
-router.get('/:id',  getMovieDetails);
 router.get('/getallmovies',  getAllMovies);
+router.get('/:id',  getMovieDetails);
 router.post('/new', authorizeManager(), CreateSchema, createMovie);
 router.post('/update/:id', authorizeManager(), UpdateSchema, updateMovie);
 module.exports = router;

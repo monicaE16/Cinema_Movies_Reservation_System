@@ -11,7 +11,10 @@ module.exports = {
     update
 };
 async function getMovies() {
-    movies=await db.Movie.findAll();
+    console.log("here");
+    const movies=await db.Movie.findAll();
+    console.log(movies);
+    return movies;
 }
 async function getDetails(id_) {
     const movie = await db.Movie.findOne({
