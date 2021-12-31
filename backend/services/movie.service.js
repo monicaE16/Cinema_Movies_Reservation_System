@@ -6,6 +6,7 @@ const db = require('_helpers/db');
 module.exports = {
     getMovies,
     updateSeatsCount,
+    getDetails,
     create,
     update
 };
@@ -18,6 +19,7 @@ async function getDetails(id_) {
           id: id_
         }
       });
+    return movie;
 }
 
 async function updateSeatsCount(id_, op) {
