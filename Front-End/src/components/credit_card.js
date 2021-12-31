@@ -73,6 +73,7 @@ const CreditCard = () => {
 					type="text"
 					name="expiry"
 					placeholder="MM/YY Expiry"
+					maxLength="4"
 					value={expiry}
 					onChange={(e) => setExpiry(e.target.value)}
 					onFocus={(e) => setFocus(e.target.name)}
