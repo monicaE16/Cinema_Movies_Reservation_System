@@ -10,6 +10,7 @@ module.exports = {
     authenticate,
     getAll,
     getById,
+    getMyTickets,
     create,
     update,
     deleteByUserName,
@@ -39,6 +40,13 @@ async function authenticate({ username, password }) {
 
 async function getAll() {
     return await db.User.findAll();
+}
+async function getMyTickets(user) {
+    return await db.Ticket.findAll({
+        where: {
+          username: user
+        }
+      });
 }
 
 async function getById(username) {
