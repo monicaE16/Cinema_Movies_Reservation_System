@@ -26,7 +26,6 @@ async function initialize() {
     db.Movie.belongsTo(db.Ticket, {foreignKey: 'id',targetKey: 'movie_id'});
 
 
-
     // sync all models with database
     await sequelize.sync();
 }

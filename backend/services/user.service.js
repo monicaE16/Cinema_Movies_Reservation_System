@@ -90,9 +90,12 @@ async function _delete(id) {
     await user.destroy();
 }
 async function deleteByUserName(name) {
-    const user = await db.User.findOne({where:{username:name}});
-    if (!user )throw 'Username is incorrect';
-    await user.destroy();
+    const tickets = await db.Ticket.find({where:{username:name}});
+    return await tickets.destroy.then(()=>{
+        const user = db.User.findOne({where:{username:name}});
+        if (!user )throw 'Username is incorrect';
+        user.destroy();
+    });
 }
 
 // helper functions

@@ -8,7 +8,7 @@ const userService = require('services/user.service');
 // routes
 router.get('/requests', authorizeAdmin(), getManagerialRequests);
 router.post('/approve', authorizeAdmin(), approveRequest);
-router.get('/delete', authorizeAdmin(), deleteuser);
+router.post('/delete', authorizeAdmin(), deleteuser);
 
 function getManagerialRequests(req, res, next) {
     console.log("hksfk")
