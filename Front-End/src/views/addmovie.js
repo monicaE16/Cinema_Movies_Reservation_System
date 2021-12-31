@@ -41,8 +41,15 @@ const Addmovie = () => {
                             <p className="title"> Ticket Price</p>
                             <input type="number" id="ticketprice" className= "sign__input upload"  name="price" min="40" max="100"/>
                             </div>
-                            <button className="uploadvideo" type="button" name="Upload">Upload Image</button>
-							<button className="sign__btn" type="button" name="submit" onClick={trial}>Add Movie</button>
+                            <div className="sign__group">
+                                <p className="title" >Image Url</p>
+								<input type="text" className="sign__input upload" placeholder="" id="imgUrl" name="movieImgUrl"/>
+							</div>		
+                            <div className="sign__group">
+                                <p className="title" >Trailer Url</p>
+								<input type="text" className="sign__input upload" placeholder="" id="trailerUrl" name="movieTrailerUrl"/>
+							</div>						
+                            <button className="sign__btn" type="button" name="submit" onClick={trial}>Add Movie</button>
 						</form>
 					</div>
 				</div>

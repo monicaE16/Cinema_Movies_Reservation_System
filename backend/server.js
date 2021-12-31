@@ -13,6 +13,7 @@ app.use(cors());
 app.use('/users', require('./controllers/user.controller'));
 app.use('/admins', require('./controllers/admin.controller'));
 app.use('/movies', require('./controllers/movie.controller'));
+app.use('/tickets', require('./controllers/ticket.controller'));
 
 // global error handler
 app.use(errorHandler);
