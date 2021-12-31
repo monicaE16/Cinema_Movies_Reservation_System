@@ -9,6 +9,7 @@ const movie_ticketService = require('services/movie-ticket.service');
 const { required } = require('joi');
 // routes
 router.get('/getmovies',  getMovies);
+router.get('/:id',  getMovieDetails);
 router.get('/getallmovies',  getAllMovies);
 router.post('/new', authorizeManager(), CreateSchema, createMovie);
 router.post('/update/:id', authorizeManager(), UpdateSchema, updateMovie);
@@ -50,6 +51,11 @@ function UpdateSchema(req, res, next) {
 function getMovies(req, res, next) {
     movie_ticketService.getTicketsOfMovies()
         .then(movies => res.json(movies))
+        .catch(next);
+}
+function getMovieDetails(req, res, next) {
+    movieService.getDetails(req.params.id)
+        .then(movie => res.json(movie))
         .catch(next);
 }
 

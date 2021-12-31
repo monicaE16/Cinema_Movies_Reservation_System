@@ -12,6 +12,13 @@ module.exports = {
 async function getMovies() {
     movies=await db.Movie.findAll();
 }
+async function getDetails(id_) {
+    const movie = await db.Movie.findOne({
+        where: {
+          id: id_
+        }
+      });
+}
 
 async function updateSeatsCount(id_, op) {
     const movie = await db.Movie.findOne({
