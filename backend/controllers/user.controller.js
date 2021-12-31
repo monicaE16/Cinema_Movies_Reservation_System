@@ -4,12 +4,12 @@ const Joi = require('joi');
 const validateRequest = require('_middleware/validate-request');
 const authorize = require('_middleware/authorize')
 const userService = require('services/user.service');
-
 // routes
 router.post('/authenticate', authenticateSchema, authenticate);
 router.post('/register', registerSchema, register);
 router.get('/', authorize(), getAll);
 router.get('/current', authorize(), getCurrent);
+router.get('/mytickets', authorize(), getMyTickets);
 router.get('/:id', authorize(), getById);
 router.put('/:id', authorize(), updateSchema, update);
 router.delete('/:id', authorize(), _delete);
@@ -51,6 +51,12 @@ function register(req, res, next) {
 function getAll(req, res, next) {
     userService.getAll()
         .then(users => res.json(users))
+        .catch(next);
+}
+function getMyTickets(req, res, next) {
+    console.log(req.user.username);
+    userService.getMyTickets(req.user.username)
+        .then(tickets => res.json(tickets))
         .catch(next);
 }
 

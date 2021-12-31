@@ -2,6 +2,9 @@ const config = require('config.json');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('_helpers/db');
+const { Sequelize } = require('sequelize');
+const { user, password, database } = config.database;
+const sequelize = new Sequelize(database, user, password, { dialect: 'mysql' });
 
 module.exports = {
     approveManager,
@@ -9,6 +12,7 @@ module.exports = {
     authenticate,
     getAll,
     getById,
+    getMyTickets,
     create,
     update,
     deleteByUserName,
@@ -38,6 +42,14 @@ async function authenticate({ username, password }) {
 
 async function getAll() {
     return await db.User.findAll();
+}
+async function getMyTickets(user) {
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    
+    const my_query="SELECT *, CASE WHEN (M.start_time<'"+time+"' AND M.date<'"+date+"') THEN 1 ELSE 0 END AS cancel FROM `tickets`as T join movies as M WHERE T.movie_id=M.id and username='"+user+"'";
+    return await sequelize.query(my_query,{ type: Sequelize.QueryTypes.SELECT });
 }
 
 async function getById(username) {
