@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const MovieItem = ({ title, cover }) => {
 	const [modalShow, setModalShow] = React.useState(false);
@@ -7,17 +8,16 @@ const MovieItem = ({ title, cover }) => {
 	return (
 		<div className="item">
 			<div className="card card--big">
-				<div className="card__cover">
-					<img src={cover} alt="" height="100%" width="100%" />
-					<a className="card__play">
-						<i className="icon ion-ios-play"></i>
-					</a>
-				</div>
+				<Link to={"/movie"} state={{ title, cover }}>
+					<div className="card__cover">
+						<img src={cover} alt="" height="100%" width="100%" />
+					</div>
+				</Link>
 				<div className="card__content">
 					<h3 className="card__title">
-						<a href="movie" style={{ textAlign: "center" }}>
-							{title}
-						</a>
+						<Link to={"/movie"} state={{ title, cover }}>
+							<h3>{title}</h3>
+						</Link>
 
 						<i
 							className="fa fa-pen edit-icon"
