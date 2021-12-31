@@ -30,18 +30,17 @@ function Header() {
 										</li>
 
 										<li className="header__nav-item">
-											<a href="faq.html" className="header__nav-link">
-												About
+											<a href="/Reservation" className="header__nav-link">
+												Reservations
 											</a>
 										</li>
-										{
-										  edited ===true &&
-										<li class="header__nav-item">
-											<a href="/Add" className="header__nav-link">
-												Add Movie
-											</a>
-										</li>
-										}
+										{edited === true && (
+											<li className="header__nav-item">
+												<a href="/Add" className="header__nav-link">
+													Add Movie
+												</a>
+											</li>
+										)}
 									</ul>
 
 									<div className="header__auth">

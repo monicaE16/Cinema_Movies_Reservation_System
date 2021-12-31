@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./room.css";
 
 const Room = () => {
@@ -62,13 +63,13 @@ const Room = () => {
 		// put in reserved queue and remove it from available queue
 		else if (seatsAvailable.indexOf(seat) > -1) {
 			setSeatsReserved(seatsReserved.concat(seat));
-			setSeatsAvailable(seatsAvailable.filter((res) => res != seat));
+			setSeatsAvailable(seatsAvailable.filter((res) => res !== seat));
 		}
 		//if I reserved a seat and wanted to undo it
 		//then I will remove it from reserved seats and return it to available seats
 		else if (seatsReserved.indexOf(seat) > -1) {
 			setSeatsAvailable(seatsAvailable.concat(seat));
-			setSeatsReserved(seatsReserved.filter((res) => res != seat));
+			setSeatsReserved(seatsReserved.filter((res) => res !== seat));
 		}
 	};
 
@@ -85,6 +86,7 @@ const Room = () => {
 };
 
 const Seating = (props) => {
+	const navigate = useNavigate();
 	const { seats, available, reserved, onClickData } = props;
 	const onClickSeat = (seat) => {
 		onClickData(seat);
@@ -137,7 +139,12 @@ const Seating = (props) => {
 			)}
 
 			{reserved.length === 0 || (
-				<button className="sign__btn" id="reserve" type="button">
+				<button
+					className="sign__btn"
+					id="reserve"
+					type="button"
+					onClick={() => navigate("/Payment", { state: { reserved } })}
+				>
 					احجزلي
 				</button>
 			)}

@@ -1,9 +1,12 @@
 import React from "react";
-
 import Header from "../components/header";
 import MovieItem from "../components/movie_item";
 
 const Home = () => {
+	// const { state } = useLocation();
+	// const { mess } = state;
+
+	// console.log(mess);
 	return (
 		<div>
 			<Header></Header>
