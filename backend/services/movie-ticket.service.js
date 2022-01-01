@@ -12,7 +12,8 @@ module.exports = {
     getTicketsOfMovie,
     getTicketsOfMovies,
     reserveSeat,
-    cancelReservation
+    cancelReservation,
+    getDetailedTicketsOfMovie
 };
 async function getTicketsOfMovie(id) {
     return await db.Movie.find({where: { movie_id: id } });
@@ -27,7 +28,17 @@ async function getTicketsOfMovies() {
       my_query="SELECT M.*,GROUP_CONCAT(T.seat_number) as reseved_seats FROM movies M LEFT JOIN tickets T ON M.id = T.movie_id GROUP BY M.id"
       return await sequelize.query(my_query,{ type: Sequelize.QueryTypes.SELECT });
 }
-
+async function getDetailedTicketsOfMovie(id) {
+    /*return await db.Movie.findAll({
+        include: [{
+          model: db.Ticket,
+          required: true
+         }]
+      });*/
+      console.log("id"+id)
+      my_query="SELECT M.*,GROUP_CONCAT(T.seat_number) as reseved_seats FROM movies M LEFT JOIN tickets T ON M.id = T.movie_id WHERE M.id = "+id +" GROUP BY M.id"
+      return await sequelize.query(my_query,{ type: Sequelize.QueryTypes.SELECT });
+}
 async function reserveSeat(username,movie, seat) {
     const data = {
         "username": username,
