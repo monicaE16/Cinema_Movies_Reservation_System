@@ -19,6 +19,7 @@ const Signin = () => {
 				navigate("/home");
 			} else if (res.role === "user") {
 				console.log(res);
+				navigate("/home");
 				// <Redirect to={`/home`} replace state={{ location }} />;
 			}
 		});

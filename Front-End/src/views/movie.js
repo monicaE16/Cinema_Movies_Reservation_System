@@ -8,10 +8,9 @@ import { useLocation } from "react-router-dom";
 
 const Movie = () => {
 	const location = useLocation();
-	const { title, cover } = location.state;
-
-	const description =
-		"	It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.";
+	const { movie } = location.state;
+	const { title, poster_url, start_time, end_time, price, date, trailer_url } =
+		movie;
 
 	return (
 		<div>
@@ -31,7 +30,7 @@ const Movie = () => {
 								<div className="row">
 									<div className="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-5">
 										<div className="card__cover">
-											<img src={cover} alt="" />
+											<img src={poster_url} alt="" />
 										</div>
 									</div>
 
@@ -39,23 +38,20 @@ const Movie = () => {
 										<div className="card__content">
 											<ul className="card__meta">
 												<li>
-													<span>Price:</span> 120 L.E
+													<span>Price:</span> {price}
 												</li>
 												<li>
-													<span>Date:</span> 25 december
+													<span>Date:</span> {date}
 												</li>
 												<li>
-													<span>Start:</span> 22:00 pm
+													<span>Start:</span> {start_time}
 												</li>
 
 												<li>
-													<span>End:</span>00:00 am
+													<span>End:</span>
+													{end_time}
 												</li>
 											</ul>
-
-											<div className="card__description card__description--details">
-												{description}
-											</div>
 										</div>
 									</div>
 									{/* <!-- end card content --> */}
@@ -67,7 +63,7 @@ const Movie = () => {
 								className="player"
 								width="80%"
 								height="80%"
-								url="https://www.youtube.com/watch?v=JfVOs4VSpmA"
+								url={trailer_url}
 							/>
 						</div>
 					</div>

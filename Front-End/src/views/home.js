@@ -48,15 +48,9 @@ const Home = () => {
 						</div>
 
 						<div className="col-12">
-							<div className="owl-carousel home__carousel">
+							<div className="">
 								{movies.map((movie) => {
-									return (
-										<MovieItem
-											key={movie.id}
-											title={movie.title}
-											cover={movie.poster_url}
-										/>
-									);
+									return <MovieItem key={movie.id} movie={movie} />;
 								})}
 							</div>
 						</div>
