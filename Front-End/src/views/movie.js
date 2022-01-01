@@ -9,8 +9,17 @@ import { useLocation } from "react-router-dom";
 const Movie = () => {
 	const location = useLocation();
 	const { movie } = location.state;
-	const { title, poster_url, start_time, end_time, price, date, trailer_url } =
-		movie;
+
+	const {
+		id,
+		title,
+		poster_url,
+		start_time,
+		end_time,
+		price,
+		date,
+		trailer_url,
+	} = movie;
 
 	return (
 		<div>
@@ -69,7 +78,7 @@ const Movie = () => {
 					</div>
 				</div>
 			</section>
-			<Room></Room>
+			<Room id={id}></Room>
 		</div>
 	);
 };

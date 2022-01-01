@@ -12,3 +12,15 @@ export const getMovies = () => {
 			return Promise.resolve(e);
 		});
 };
+
+export const getReserved = (id) => {
+	return axios
+		.get(baseURL + "/movies/getallmovies")
+		.then((res) => {
+			return Promise.resolve(res.data);
+		})
+		.catch((e) => {
+			console.clear();
+			return Promise.resolve(e);
+		});
+};

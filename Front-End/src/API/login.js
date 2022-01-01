@@ -22,7 +22,10 @@ export const login = (username, password) => {
 		.post(baseURL + "/users/authenticate", user)
 		.then((res) => {
 			const user = new User();
+			window.localStorage.setItem("token", res.data.token);
+			window.localStorage.setItem("role", res.data.role);
 			user.getUser(res.data, username);
+
 			return Promise.resolve(user);
 		})
 		.catch((e) => {

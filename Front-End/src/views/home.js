@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/header";
 import MovieItem from "../components/movie_item";
 import { getMovies } from "../API/movies";
-const Home = () => {
+const Home = ({ user }) => {
 	const [movies, setMovies] = useState([]);
 	useEffect(() => {
 		getMovies()
@@ -11,7 +11,7 @@ const Home = () => {
 	}, []);
 	return (
 		<div>
-			<Header></Header>
+			<Header role={user.role}></Header>
 
 			<section className="home">
 				<div className="owl-carousel home__bg">
