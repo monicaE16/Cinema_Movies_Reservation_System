@@ -39,19 +39,22 @@ async function getDetailedTicketsOfMovie(id) {
       my_query="SELECT M.*,GROUP_CONCAT(T.seat_number) as reseved_seats FROM movies M LEFT JOIN tickets T ON M.id = T.movie_id WHERE M.id = "+id +" GROUP BY M.id"
       return await sequelize.query(my_query,{ type: Sequelize.QueryTypes.SELECT });
 }
-async function reserveSeat(username,movie, seat) {
-    const data = {
-        "username": username,
-        "movie_id": movie,
-        "seat_number": seat
+async function reserveSeat(username,movie, seats) {
+    for(const seat of seats) {
+        const data = {
+            "username": username,
+            "movie_id": movie,
+            "seat_number": seat
+        }
+        if (await db.Ticket.findOne({ where: { movie_id:movie, seat_number: seat} })) {
+            throw 'Ticket is already taken';
+        }
+        else {
+            await db.Ticket.create(data);
+            await movieService.updateSeatsCount(movie, 'dec')
+        }
     }
-    if (await db.Ticket.findOne({ where: { movie_id:movie, seat_number: seat} })) {
-        throw 'Ticket is already taken';
-    }
-    else {
-        await db.Ticket.create(data);
-        await movieService.updateSeatsCount(movie, 'dec')
-    }
+
 }
 
 async function cancelReservation(username,movie, seat) {

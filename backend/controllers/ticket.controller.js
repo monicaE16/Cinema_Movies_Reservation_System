@@ -14,7 +14,7 @@ router.post('/reserve', authorize(), reserveSeat);
 module.exports = router;
 
 function reserveSeat(req, res, next) {
-    movie_ticketService.reserveSeat(req.user.username, req.body.movie, req.body.seat)
+    movie_ticketService.reserveSeat(req.user.username, req.body.movie, req.body.seats)
         .then(() => res.json({ message: 'Reservation successful' }))
         .catch(next);
 }
