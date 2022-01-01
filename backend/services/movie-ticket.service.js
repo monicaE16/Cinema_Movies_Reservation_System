@@ -42,19 +42,21 @@ async function getDetailedTicketsOfMovie(id) {
 		" GROUP BY M.id";
 	return await sequelize.query(my_query, { type: Sequelize.QueryTypes.SELECT });
 }
-async function reserveSeat(username, movie, seat) {
-	const data = {
-		username: username,
-		movie_id: movie,
-		seat_number: seat,
-	};
-	if (
-		await db.Ticket.findOne({ where: { movie_id: movie, seat_number: seat } })
-	) {
-		throw "Ticket is already taken";
-	} else {
-		await db.Ticket.create(data);
-		await movieService.updateSeatsCount(movie, "dec");
+async function reserveSeat(username, movie, seats) {
+	for (const seat of seats) {
+		const data = {
+			username: username,
+			movie_id: movie,
+			seat_number: seat,
+		};
+		if (
+			await db.Ticket.findOne({ where: { movie_id: movie, seat_number: seat } })
+		) {
+			throw "Ticket is already taken";
+		} else {
+			await db.Ticket.create(data);
+			await movieService.updateSeatsCount(movie, "dec");
+		}
 	}
 }
 
