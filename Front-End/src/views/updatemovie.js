@@ -1,48 +1,14 @@
 import React, { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { updateMovie } from "../API/movies";
+import { useLocation } from "react-router-dom";
 
-const MovieItem = ({ movie }) => {
-	const [modalShow, setModalShow] = useState(false);
+import Header from "../components/header";
 
-	const { title, poster_url } = movie;
+const Updatemovie = () => {
+	const location = useLocation();
+	const { movie } = location.state;
+	console.log("inside update", movie);
 
-	return (
-		<div className="item">
-			<div className="card card--big">
-				<Link to={"/movie"} state={{ movie }}>
-					<div className="card__cover">
-						<img src={poster_url} alt="" />
-					</div>
-				</Link>
-				<div className="card__content">
-					<h3 className="card__title">
-						<Link to={"/movie"} state={{ movie }}>
-							<h3>{title}</h3>
-						</Link>
-						{window.localStorage.getItem("role") === "manager" && (
-							<Link to={"/update"} state={{ movie }}>
-								<i
-									className="fa fa-pen edit-icon"
-									// onClick={() => setModalShow(true)}
-								></i>
-							</Link>
-						)}
-						{/* <MyVerticallyCenteredModal
-							movie={movie}
-							show={modalShow}
-							onHide={() => setModalShow(false)}
-						/> */}
-					</h3>
-				</div>
-			</div>
-		</div>
-	);
-};
-function MyVerticallyCenteredModal(props) {
-	const movie = props.movie;
-	console.log("inside ", movie);
 	const [title, setTitle] = useState(movie.title);
 	const [date, setDate] = useState(movie.date);
 	const [start_time, setStart_time] = useState(movie.start_time);
@@ -51,7 +17,7 @@ function MyVerticallyCenteredModal(props) {
 	const [price, setPrice] = useState(movie.price);
 	const [poster_url, setPoster_url] = useState(movie.poster_url);
 	const [trailer_url, setTrailer_url] = useState(movie.trailer_url);
-	const handleUpdate = (e) => {
+	const handleClick = (e) => {
 		if (
 			!title ||
 			!date ||
@@ -76,36 +42,33 @@ function MyVerticallyCenteredModal(props) {
 			};
 
 			console.log(movie);
+			console.log(typeof end_time);
 			updateMovie(movie.id, movie)
 				.then((res) => {
 					console.log(res.message);
-					// alert("Movie updated Successfully");
+					alert("Movie Updated Successfully");
 				})
 				.catch((e) => console.log(e));
 		}
 	};
-
 	return (
-		<Modal
-			{...props}
-			size="lg"
-			aria-labelledby="contained-modal-title-vcenter"
-			centered
-		>
-			<Modal.Header closeButton>
-				<Modal.Title id="contained-modal-title-vcenter">Edit Movie</Modal.Title>
-			</Modal.Header>
-			<Modal.Body>
-				<div className="editmovie">
-					<div className="container">
-						<div className="row">
-							<div className="col-12">
-								<form action="#" className="modalform" id="movieform">
+		<div>
+			<Header></Header>
+			<div className="addmovie">
+				<div className="container">
+					<div className="row">
+						<div className="col-12">
+							<div className="upload-content">
+								<form
+									action="#"
+									className="sign__form upload_form"
+									id="movieform"
+								>
 									<div className="sign__logo">
 										<img src="img/احجزلي.png" alt="" />
 									</div>
-									<div className="sign__group d-flex justify-content-around">
-										<p className="title modaltitle">Title</p>
+									<div className="sign__group">
+										<p className="title">Title</p>
 										<input
 											type="text"
 											className="sign__input upload"
@@ -116,8 +79,8 @@ function MyVerticallyCenteredModal(props) {
 											onChange={(e) => setTitle(e.target.value)}
 										/>
 									</div>
-									<div className="sign__group d-flex justify-content-around">
-										<p className="title modaltitle">Date</p>
+									<div className="sign__group">
+										<p className="title">Date</p>
 										<input
 											type="date"
 											id="moviedate"
@@ -127,8 +90,8 @@ function MyVerticallyCenteredModal(props) {
 											onChange={(e) => setDate(e.target.value)}
 										/>
 									</div>
-									<div className="sign__group d-flex justify-content-around">
-										<p className="title modaltitle">Start Time</p>
+									<div className="sign__group">
+										<p className="title">Start Time</p>
 										<input
 											type="time"
 											step="1"
@@ -139,8 +102,8 @@ function MyVerticallyCenteredModal(props) {
 											onChange={(e) => setStart_time(e.target.value)}
 										/>
 									</div>
-									<div className="sign__group d-flex justify-content-around">
-										<p className="title modaltitle">End Time</p>
+									<div className="sign__group">
+										<p className="title">End Time</p>
 										<input
 											type="time"
 											step="1"
@@ -152,8 +115,8 @@ function MyVerticallyCenteredModal(props) {
 											onChange={(e) => setEnd_time(e.target.value)}
 										/>
 									</div>
-									<div className="sign__group d-flex justify-content-around">
-										<p className="title modaltitle">Screening Room</p>
+									<div className="sign__group">
+										<p className="title">Screening Room</p>
 										<select
 											className="sign__input upload"
 											name="rooms"
@@ -169,8 +132,8 @@ function MyVerticallyCenteredModal(props) {
 											</option>
 										</select>
 									</div>
-									<div className="sign__group d-flex justify-content-around">
-										<p className="title modaltitle"> Ticket Price</p>
+									<div className="sign__group">
+										<p className="title"> Ticket Price</p>
 										<input
 											type="number"
 											id="ticketprice"
@@ -182,8 +145,8 @@ function MyVerticallyCenteredModal(props) {
 											onChange={(e) => setPrice(e.target.value)}
 										/>
 									</div>
-									<div className="sign__group d-flex justify-content-around">
-										<p className="title modaltitle"> Image Url</p>
+									<div className="sign__group">
+										<p className="title">Image Url</p>
 										<input
 											type="text"
 											className="sign__input upload"
@@ -194,8 +157,8 @@ function MyVerticallyCenteredModal(props) {
 											onChange={(e) => setPoster_url(e.target.value)}
 										/>
 									</div>
-									<div className="sign__group d-flex justify-content-around">
-										<p className="title modaltitle"> Trailer Url</p>
+									<div className="sign__group">
+										<p className="title">Trailer Url</p>
 										<input
 											type="text"
 											className="sign__input upload"
@@ -206,28 +169,24 @@ function MyVerticallyCenteredModal(props) {
 											onChange={(e) => setTrailer_url(e.target.value)}
 										/>
 									</div>
+									<button
+										className="sign__btn"
+										type="button"
+										name="submit"
+										onClick={(e) => {
+											handleClick(e);
+										}}
+									>
+										Update Movie
+									</button>
 								</form>
 							</div>
 						</div>
 					</div>
 				</div>
-			</Modal.Body>
-			<Modal.Footer>
-				<Button
-					type="button"
-					name="editmovie"
-					className="sign__btn modalbutton"
-					onClick={(e) => {
-						handleUpdate(e);
-					}}
-				>
-					Edit Movie
-				</Button>
-				<Button onClick={props.onHide} className="sign__btn modalbutton">
-					Close
-				</Button>
-			</Modal.Footer>
-		</Modal>
+			</div>
+		</div>
 	);
-}
-export default MovieItem;
+};
+
+export default Updatemovie;

@@ -8,6 +8,7 @@ import Movie from "./views/movie";
 import Addmovie from "./views/addmovie";
 import Error from "./views/error";
 import Payment from "./views/payment";
+import Updatemovie from "./views/updatemovie";
 import Reservation from "./views/reservations";
 function App() {
 	const [user, setUser] = useState("guest");
@@ -34,6 +35,7 @@ function App() {
 					<Route exact path="/Movie" element={<Movie user={user} />} />
 
 					<Route exact path="/Add" element={<Addmovie user={user} />} />
+					<Route exact path="/update" element={<Updatemovie user={user} />} />
 					<Route exact path="/Payment" element={<Payment user={user} />} />
 					<Route
 						exact
