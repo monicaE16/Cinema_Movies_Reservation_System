@@ -20,11 +20,12 @@ const MovieItem = ({ movie }) => {
 						<Link to={"/movie"} state={{ movie }}>
 							<h3>{title}</h3>
 						</Link>
-
-						<i
-							className="fa fa-pen edit-icon"
-							onClick={() => setModalShow(true)}
-						></i>
+						{window.localStorage.getItem("role") === "manager" && (
+							<i
+								className="fa fa-pen edit-icon"
+								onClick={() => setModalShow(true)}
+							></i>
+						)}
 						<MyVerticallyCenteredModal
 							show={modalShow}
 							onHide={() => setModalShow(false)}

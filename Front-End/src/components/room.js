@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { getReserved } from "../API/movies";
 import "./room.css";
 
 const Room = ({ id }) => {
@@ -31,6 +32,9 @@ const Room = ({ id }) => {
 
 	//colour => purple
 	const [seatsAvailable, setSeatsAvailable] = useState([
+		"1",
+		"2",
+		"3",
 		"4",
 		"5",
 		"6",
@@ -53,7 +57,25 @@ const Room = ({ id }) => {
 	//color => pink
 	const [seatsReserved, setSeatsReserved] = useState([]); // means selected seats but not reserved yet
 
+	useEffect(() => {
+		getReserved(id)
+			.then((res) => {
+				console.log("in room", res[0].reseved_seats);
+				let reservedSeats = res[0].reseved_seats;
+
+				let reservedArray = reservedSeats.split(",");
+
+				var result = seatsAvailable.filter(
+					(seat) => !reservedArray.includes(seat)
+				);
+				setSeatsAvailable(result);
+				console.log(seatsAvailable);
+			})
+			.catch((e) => console.log(e));
+	}, []);
+
 	const handleClick = (seat) => {
+		//console.log("seat in handle", typeof seat);
 		if (role === "user") {
 			if (
 				seatsAvailable.indexOf(seat) === -1 &&
@@ -80,6 +102,7 @@ const Room = ({ id }) => {
 	return (
 		<div className="body">
 			<Seating
+				id={id}
 				seats={seats}
 				available={seatsAvailable}
 				reserved={seatsReserved}
@@ -93,7 +116,7 @@ const Seating = (props) => {
 	const role = window.localStorage.getItem("role");
 
 	const navigate = useNavigate();
-	const { seats, available, reserved, onClickData } = props;
+	const { id, seats, available, reserved, onClickData } = props;
 	const onClickSeat = (seat) => {
 		onClickData(seat);
 	};
@@ -150,7 +173,7 @@ const Seating = (props) => {
 					className="sign__btn"
 					id="reserve"
 					type="button"
-					onClick={() => navigate("/Payment", { state: { reserved } })}
+					onClick={() => navigate("/Payment", { state: { reserved, id } })}
 				>
 					احجزلي
 				</button>

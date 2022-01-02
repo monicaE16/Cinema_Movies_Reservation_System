@@ -15,7 +15,7 @@ export const getMovies = () => {
 
 export const getReserved = (id) => {
 	return axios
-		.get(baseURL + "/movies/getallmovies")
+		.get(baseURL + `/movies/tickets/${id}`)
 		.then((res) => {
 			return Promise.resolve(res.data);
 		})
