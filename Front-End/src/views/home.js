@@ -39,17 +39,11 @@ const Home = ({ user }) => {
 							<h1 className="home__title">
 								<b>حاليا بدور العرض</b>
 							</h1>
-							<button className="home__nav home__nav--prev" type="button">
-								<i className="icon ion-ios-arrow-round-back"></i>
-							</button>
-							<button className="home__nav home__nav--next" type="button">
-								<i className="icon ion-ios-arrow-round-forward"></i>
-							</button>
 						</div>
 
 						<div className="col-12">
-							<div className="">
-								{movies.map((movie) => {
+						<div className="movies">							
+							{movies.map((movie) => {
 									return <MovieItem key={movie.id} movie={movie} />;
 								})}
 							</div>
