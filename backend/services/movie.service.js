@@ -53,7 +53,9 @@ async function create(data) {
         throw 'please use a future date'
     }
     const my_query="SELECT * FROM `movies` WHERE `room` = '"+data.room+"' AND `date` = '"+data.date+"' AND( ( `end_time` > '"+data.start_time+"' AND `start_time` < '"+data.start_time+"' ) OR( `start_time` <'"+data.end_time+"' AND `end_time` > '"+data.end_time+"' ) OR( `start_time` > '"+data.start_time+"' AND `end_time` < '"+data.end_time+"' ) )"
-    if (Date.parse(data.date)< Date.now())
+    const others= await sequelize.query(my_query,{ type: Sequelize.QueryTypes.SELECT });
+
+    if (others)
     {
         throw 'room already in use'
     }
@@ -69,6 +71,13 @@ async function update(data, movie_id) {
     if (data.date< Date.now())
     {
         throw 'please use a future date'
+    }
+    const my_query="SELECT * FROM `movies` WHERE `room` = '"+data.room+"' AND `date` = '"+data.date+"' AND( ( `end_time` > '"+data.start_time+"' AND `start_time` < '"+data.start_time+"' ) OR( `start_time` <'"+data.end_time+"' AND `end_time` > '"+data.end_time+"' ) OR( `start_time` > '"+data.start_time+"' AND `end_time` < '"+data.end_time+"' ) )"
+    const others= await sequelize.query(my_query,{ type: Sequelize.QueryTypes.SELECT });
+
+    if (others)
+    {
+        throw 'room already in use'
     }
     else {
         await db.Movie.update(
