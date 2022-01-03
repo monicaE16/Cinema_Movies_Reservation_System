@@ -7,6 +7,7 @@ const MovieItem = ({ movie }) => {
 	const [modalShow, setModalShow] = useState(false);
 
 	const { title, poster_url } = movie;
+	//console.log("movie in movie item", movie);
 
 	return (
 		<div className="item">

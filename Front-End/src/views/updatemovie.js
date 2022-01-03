@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { updateMovie } from "../API/movies";
 import { useLocation } from "react-router-dom";
+import moment from "moment";
 
 import Header from "../components/header";
 
 const Updatemovie = () => {
 	const location = useLocation();
 	const { movie } = location.state;
-	console.log("inside update", movie);
+	//console.log("movie in update", movie);
 
 	const [title, setTitle] = useState(movie.title);
 	const [date, setDate] = useState(movie.date);
@@ -17,6 +18,11 @@ const Updatemovie = () => {
 	const [price, setPrice] = useState(movie.price);
 	const [poster_url, setPoster_url] = useState(movie.poster_url);
 	const [trailer_url, setTrailer_url] = useState(movie.trailer_url);
+	// console.log(
+	// 	"inside update",
+	// 	date,
+	// 	moment(date, "YYYY-MM-DDThh:mm:ss A Z").format("MM/DD/YY")
+	// );
 	const handleClick = (e) => {
 		if (
 			!title ||
@@ -28,7 +34,7 @@ const Updatemovie = () => {
 		) {
 			alert("Please Enter Valid Inputs");
 		} else {
-			const movie = {
+			const movie2 = {
 				title: title,
 				date: date,
 				start_time: start_time,
@@ -41,9 +47,7 @@ const Updatemovie = () => {
 				trailer_url: trailer_url,
 			};
 
-			console.log(movie);
-			console.log(typeof end_time);
-			updateMovie(movie.id, movie)
+			updateMovie(movie.id, movie2)
 				.then((res) => {
 					console.log(res.message);
 					alert("Movie Updated Successfully");
@@ -86,7 +90,9 @@ const Updatemovie = () => {
 											id="moviedate"
 											className="sign__input upload"
 											name="movieDate"
-											value={date}
+											value={moment(date, "YYYY-MM-DDThh:mm:ss A Z").format(
+												"YYYY-MM-DD"
+											)}
 											onChange={(e) => setDate(e.target.value)}
 										/>
 									</div>
