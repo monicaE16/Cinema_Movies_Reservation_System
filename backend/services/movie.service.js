@@ -52,6 +52,11 @@ async function create(data) {
     {
         throw 'please use a future date'
     }
+    const my_query="SELECT * FROM `movies` WHERE `room` = '"+data.room+"' AND `date` = '"+data.date+"' AND( ( `end_time` > '"+data.start_time+"' AND `start_time` < '"+data.start_time+"' ) OR( `start_time` <'"+data.end_time+"' AND `end_time` > '"+data.end_time+"' ) OR( `start_time` > '"+data.start_time+"' AND `end_time` < '"+data.end_time+"' ) )"
+    if (Date.parse(data.date)< Date.now())
+    {
+        throw 'room already in use'
+    }
     else {
         await db.Movie.create(data);
     }
