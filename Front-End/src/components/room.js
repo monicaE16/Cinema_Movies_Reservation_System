@@ -3,11 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { getReserved } from "../API/movies";
 import "./room.css";
 
-const Room = ({ id }) => {
+const Room = ({ id, room }) => {
 	//data should be taken from api
 	const role = window.localStorage.getItem("role");
-
-	const [seats, setSeats] = useState([
+	var roomA = [
 		"1",
 		"2",
 		"3",
@@ -28,31 +27,45 @@ const Room = ({ id }) => {
 		"18",
 		"19",
 		"20",
-	]);
+	];
+	var roomB = [
+		"1",
+		"2",
+		"3",
+		"4",
+		"5",
+		"6",
+		"7",
+		"8",
+		"9",
+		"10",
+		"11",
+		"12",
+		"13",
+		"14",
+		"15",
+		"16",
+		"17",
+		"18",
+		"19",
+		"20",
+		"21",
+		"22",
+		"23",
+		"24",
+		"25",
+		"26",
+		"27",
+		"28",
+		"29",
+		"30",
+	];
+
+	var myRoom = room === "B" ? roomB : roomA;
+	const [seats, setSeats] = useState(myRoom);
 
 	//colour => purple
-	const [seatsAvailable, setSeatsAvailable] = useState([
-		"1",
-		"2",
-		"3",
-		"4",
-		"5",
-		"6",
-		"7",
-		"8",
-		"9",
-		"10",
-		"11",
-		"12",
-		"13",
-		"14",
-		"15",
-		"16",
-		"17",
-		"18",
-		"19",
-		"20",
-	]);
+	const [seatsAvailable, setSeatsAvailable] = useState(myRoom);
 
 	//color => pink
 	const [seatsReserved, setSeatsReserved] = useState([]); // means selected seats but not reserved yet
@@ -60,16 +73,18 @@ const Room = ({ id }) => {
 	useEffect(() => {
 		getReserved(id)
 			.then((res) => {
-				console.log("in room", res[0].reseved_seats);
+				// console.log("in room", res[0].reseved_seats);
 				let reservedSeats = res[0].reseved_seats;
 
-				let reservedArray = reservedSeats.split(",");
+				if (reservedSeats) {
+					let reservedArray = reservedSeats.split(",");
 
-				var result = seatsAvailable.filter(
-					(seat) => !reservedArray.includes(seat)
-				);
-				setSeatsAvailable(result);
-				console.log(seatsAvailable);
+					var result = seatsAvailable.filter(
+						(seat) => !reservedArray.includes(seat)
+					);
+					setSeatsAvailable(result);
+					console.log(seatsAvailable);
+				}
 			})
 			.catch((e) => console.log(e));
 	}, []);

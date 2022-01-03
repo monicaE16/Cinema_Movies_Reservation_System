@@ -44,9 +44,6 @@ const Signup = () => {
 												type="checkbox"
 												checked="checked"
 											/>
-											<label for="remember">
-												I agree to the <a href="#">Privacy Policy</a>
-											</label>
 										</div>
 
 										<button className="sign__btn" type="button">

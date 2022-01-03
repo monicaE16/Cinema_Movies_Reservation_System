@@ -19,6 +19,7 @@ const Movie = () => {
 		price,
 		date,
 		trailer_url,
+		room,
 	} = movie;
 
 	return (
@@ -78,7 +79,7 @@ const Movie = () => {
 					</div>
 				</div>
 			</section>
-			<Room id={id}></Room>
+			<Room id={id} room={room}></Room>
 		</div>
 	);
 };
