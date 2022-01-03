@@ -11,6 +11,7 @@ const { required } = require('joi');
 router.get('/reserved',  getReservedSeats);
 router.get('/getallmovies',  getAllMovies);
 router.get('/:id',  getMovieDetails);
+router.get('/tickets/:id',  getMovieTickets);
 router.post('/new', authorizeManager(), CreateSchema, createMovie);
 router.post('/update/:id', authorizeManager(), UpdateSchema, updateMovie);
 module.exports = router;
@@ -55,6 +56,11 @@ function getReservedSeats(req, res, next) {
 }
 function getMovieDetails(req, res, next) {
     movieService.getDetails(req.params.id)
+        .then(movie => res.json(movie))
+        .catch(next);
+}
+function getMovieTickets(req, res, next) {
+    movie_ticketService.getDetailedTicketsOfMovie(req.params.id)
         .then(movie => res.json(movie))
         .catch(next);
 }

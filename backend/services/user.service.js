@@ -7,7 +7,6 @@ const { user, password, database } = config.database;
 const sequelize = new Sequelize(database, user, password, { dialect: 'mysql' });
 
 module.exports = {
-    deleteByUserName,
     approveManager,
     getFutureManagers,
     authenticate,
@@ -102,9 +101,13 @@ async function _delete(id) {
     await user.destroy();
 }
 async function deleteByUserName(name) {
-    const user = await db.User.findOne({where:{username:name}});
-    if (!user )throw 'Username is incorrect';
-    await user.destroy();
+    await db.Ticket.destroy({where:{username:name}}).then(()=>{
+        const user = db.User.destroy({where:{username:name}});
+        //if (!user )throw 'Username is incorrect';
+        //user.destroy();
+    })
+
+
 }
 
 // helper functions

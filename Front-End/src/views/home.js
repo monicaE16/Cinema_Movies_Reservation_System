@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/header";
 import MovieItem from "../components/movie_item";
-
-const Home = () => {
-	// const { state } = useLocation();
-	// const { mess } = state;
-
-	// console.log(mess);
+import { getMovies } from "../API/movies";
+const Home = ({ user }) => {
+	const [movies, setMovies] = useState([]);
+	useEffect(() => {
+		getMovies()
+			.then((res) => setMovies(res))
+			.catch((e) => console.log(e));
+	}, []);
 	return (
 		<div>
-			<Header></Header>
+			<Header role={user.role}></Header>
 
 			<section className="home">
 				<div className="owl-carousel home__bg">
@@ -46,13 +48,10 @@ const Home = () => {
 						</div>
 
 						<div className="col-12">
-							<div className="owl-carousel home__carousel">
-								<MovieItem title="I love U" cover="img/covers/cover.jpg" />
-								<MovieItem title="I love U" cover="img/covers/cover2.jpg" />
-								<MovieItem title="I love U" cover="img/covers/cover3.jpg" />
-								<MovieItem title="I love U" cover="img/covers/cover4.jpg" />
-								<MovieItem title="I love U" cover="img/covers/cover5.jpg" />
-								<MovieItem title="I love U" cover="img/covers/cover6.jpg" />
+							<div className="">
+								{movies.map((movie) => {
+									return <MovieItem key={movie.id} movie={movie} />;
+								})}
 							</div>
 						</div>
 					</div>

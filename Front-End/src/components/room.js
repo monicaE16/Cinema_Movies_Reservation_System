@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { getReserved } from "../API/movies";
 import "./room.css";
 
-const Room = () => {
+const Room = ({ id }) => {
 	//data should be taken from api
+	const role = window.localStorage.getItem("role");
+
 	const [seats, setSeats] = useState([
 		"1",
 		"2",
@@ -29,6 +32,9 @@ const Room = () => {
 
 	//colour => purple
 	const [seatsAvailable, setSeatsAvailable] = useState([
+		"1",
+		"2",
+		"3",
 		"4",
 		"5",
 		"6",
@@ -51,31 +57,52 @@ const Room = () => {
 	//color => pink
 	const [seatsReserved, setSeatsReserved] = useState([]); // means selected seats but not reserved yet
 
-	const handleClick = (seat) => {
-		if (
-			seatsAvailable.indexOf(seat) === -1 &&
-			seatsReserved.indexOf(seat) === -1
-		) {
-			return;
-		}
+	useEffect(() => {
+		getReserved(id)
+			.then((res) => {
+				console.log("in room", res[0].reseved_seats);
+				let reservedSeats = res[0].reseved_seats;
 
-		//if a seat is available and I want to reserve it
-		// put in reserved queue and remove it from available queue
-		else if (seatsAvailable.indexOf(seat) > -1) {
-			setSeatsReserved(seatsReserved.concat(seat));
-			setSeatsAvailable(seatsAvailable.filter((res) => res !== seat));
-		}
-		//if I reserved a seat and wanted to undo it
-		//then I will remove it from reserved seats and return it to available seats
-		else if (seatsReserved.indexOf(seat) > -1) {
-			setSeatsAvailable(seatsAvailable.concat(seat));
-			setSeatsReserved(seatsReserved.filter((res) => res !== seat));
+				let reservedArray = reservedSeats.split(",");
+
+				var result = seatsAvailable.filter(
+					(seat) => !reservedArray.includes(seat)
+				);
+				setSeatsAvailable(result);
+				console.log(seatsAvailable);
+			})
+			.catch((e) => console.log(e));
+	}, []);
+
+	const handleClick = (seat) => {
+		//console.log("seat in handle", typeof seat);
+		if (role === "user") {
+			if (
+				seatsAvailable.indexOf(seat) === -1 &&
+				seatsReserved.indexOf(seat) === -1
+			) {
+				return;
+			}
+
+			//if a seat is available and I want to reserve it
+			// put in reserved queue and remove it from available queue
+			else if (seatsAvailable.indexOf(seat) > -1) {
+				setSeatsReserved(seatsReserved.concat(seat));
+				setSeatsAvailable(seatsAvailable.filter((res) => res !== seat));
+			}
+			//if I reserved a seat and wanted to undo it
+			//then I will remove it from reserved seats and return it to available seats
+			else if (seatsReserved.indexOf(seat) > -1) {
+				setSeatsAvailable(seatsAvailable.concat(seat));
+				setSeatsReserved(seatsReserved.filter((res) => res !== seat));
+			}
 		}
 	};
 
 	return (
 		<div className="body">
 			<Seating
+				id={id}
 				seats={seats}
 				available={seatsAvailable}
 				reserved={seatsReserved}
@@ -86,14 +113,17 @@ const Room = () => {
 };
 
 const Seating = (props) => {
+	const role = window.localStorage.getItem("role");
+
 	const navigate = useNavigate();
-	const { seats, available, reserved, onClickData } = props;
+	const { id, seats, available, reserved, onClickData } = props;
 	const onClickSeat = (seat) => {
 		onClickData(seat);
 	};
 	return (
 		<div className="body">
-			<h1>احجز تذكرتك الان</h1>
+			{role !== "manager" && <h1>احجز تذكرتك الان</h1>}
+			{role === "manager" && <h1>المقاعد المتاحة</h1>}
 			<ul className="showcase">
 				<li>
 					<div className="seat"></div>
@@ -143,7 +173,7 @@ const Seating = (props) => {
 					className="sign__btn"
 					id="reserve"
 					type="button"
-					onClick={() => navigate("/Payment", { state: { reserved } })}
+					onClick={() => navigate("/Payment", { state: { reserved, id } })}
 				>
 					احجزلي
 				</button>
