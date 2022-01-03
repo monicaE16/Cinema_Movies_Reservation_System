@@ -2,6 +2,10 @@ const config = require('config.json');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('_helpers/db');
+const { Sequelize } = require('sequelize');
+const { date } = require('joi');
+const { user, password, database } = config.database;
+const sequelize = new Sequelize(database, user, password, { dialect: 'mysql' });
 
 module.exports = {
     getMovies,
@@ -52,10 +56,11 @@ async function create(data) {
     {
         throw 'please use a future date'
     }
-    const my_query="SELECT * FROM `movies` WHERE `room` = '"+data.room+"' AND `date` = '"+data.date+"' AND( ( `end_time` > '"+data.start_time+"' AND `start_time` < '"+data.start_time+"' ) OR( `start_time` <'"+data.end_time+"' AND `end_time` > '"+data.end_time+"' ) OR( `start_time` > '"+data.start_time+"' AND `end_time` < '"+data.end_time+"' ) )"
+    const date_in=new Date(data.date).toISOString()
+    const my_query="SELECT * FROM `movies` WHERE `room` = '"+data.room+"' AND `date` = CONVERT('"+date_in+"', DATE) AND( ( `end_time` > CONVERT('"+data.start_time+"', TIME) AND `start_time` < CONVERT('"+data.start_time+"', TIME) ) OR( `start_time` < CONVERT('"+data.end_time+"', TIME) AND `end_time` > CONVERT('"+data.start_time+"', TIME) ) OR( `start_time` >= CONVERT('"+data.start_time+"', TIME) AND `end_time` <= CONVERT('"+data.end_time+"', TIME) ) )"
     const others= await sequelize.query(my_query,{ type: Sequelize.QueryTypes.SELECT });
-
-    if (others)
+console.log(others.length);
+    if (others.length!=0)
     {
         throw 'room already in use'
     }
@@ -72,10 +77,11 @@ async function update(data, movie_id) {
     {
         throw 'please use a future date'
     }
-    const my_query="SELECT * FROM `movies` WHERE `room` = '"+data.room+"' AND `date` = '"+data.date+"' AND( ( `end_time` > '"+data.start_time+"' AND `start_time` < '"+data.start_time+"' ) OR( `start_time` <'"+data.end_time+"' AND `end_time` > '"+data.end_time+"' ) OR( `start_time` > '"+data.start_time+"' AND `end_time` < '"+data.end_time+"' ) )"
+    const date_in=new Date(data.date).toISOString()
+    const my_query="SELECT * FROM `movies` WHERE `room` = '"+data.room+"' AND `date` = CONVERT('"+date_in+"', DATE) AND( ( `end_time` > CONVERT('"+data.start_time+"', TIME) AND `start_time` < CONVERT('"+data.start_time+"', TIME) ) OR( `start_time` < CONVERT('"+data.end_time+"', TIME) AND `end_time` > CONVERT('"+data.start_time+"', TIME) ) OR( `start_time` >= CONVERT('"+data.start_time+"', TIME) AND `end_time` <= CONVERT('"+data.end_time+"', TIME) ) )"
     const others= await sequelize.query(my_query,{ type: Sequelize.QueryTypes.SELECT });
-
-    if (others)
+console.log(others.length);
+    if (others.length!=0)
     {
         throw 'room already in use'
     }
