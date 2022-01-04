@@ -1262,7 +1262,7 @@ ul {
 	transition: 0.4s ease;
 }
 .card__cover img {
-	width: 100%;
+	width: 40%;
 }
 .card__cover:before {
 	content: "";
@@ -3896,4 +3896,14 @@ input::-webkit-inner-spin-button {
 
 input[type="number"] {
 	-moz-appearance: textfield;
+}
+.movies
+{
+	display: flex;
+	margin-top: 50px;
+	flex-wrap: wrap;
+}
+.item 
+{
+	width: 50%;
 }

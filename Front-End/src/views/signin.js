@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { login } from "../API/login";
 
-const Signin = () => {
+const Signin = ({ setUser }) => {
 	const [name, setName] = useState("");
 	const [pass, setPass] = useState("");
-	const location = useLocation();
 	const navigate = useNavigate();
 
 	const handleClick = (e) => {
@@ -15,10 +14,18 @@ const Signin = () => {
 				///Not a correct user (wrong username or password)
 				console.log("error");
 			} else if (res.role === "manager") {
-				console.log("in hereee");
+				setUser(res);
+				console.log("in sign in", res);
+				console.log(
+					"in sign in storage ",
+					window.localStorage.getItem("token")
+				);
+
 				navigate("/home");
 			} else if (res.role === "user") {
-				console.log(res);
+				setUser(res);
+
+				console.log("from sign in", res);
 				navigate("/home");
 				// <Redirect to={`/home`} replace state={{ location }} />;
 			}

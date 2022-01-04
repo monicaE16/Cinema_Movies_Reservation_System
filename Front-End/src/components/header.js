@@ -1,7 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
-	const edited = true;
+	const navigate = useNavigate();
+	const role = window.localStorage.getItem("role");
+	const handleLogOut = (e) => {
+		window.localStorage.clear();
+		navigate("/home");
+	};
+	const handleSignIn = (e) => {
+		navigate("/SignIn");
+	};
 	return (
 		<div>
 			<header className="header">
@@ -16,25 +25,19 @@ function Header() {
 
 									<ul className="header__nav">
 										<li className="header__nav-item">
-											<a
-												href="/home"
-												className="header__nav-link"
-												// role="button"
-												// id="dropdownMenuHome"
-												// data-toggle="dropdown"
-												// aria-haspopup="true"
-												// aria-expanded="false"
-											>
+											<a href="/home" className="header__nav-link">
 												Home
 											</a>
 										</li>
+										{role === "user" && (
+											<li className="header__nav-item">
+												<a href="/Reservation" className="header__nav-link">
+													Reservations
+												</a>
+											</li>
+										)}
 
-										<li className="header__nav-item">
-											<a href="/Reservation" className="header__nav-link">
-												Reservations
-											</a>
-										</li>
-										{edited === true && (
+										{role === "manager" && (
 											<li className="header__nav-item">
 												<a href="/Add" className="header__nav-link">
 													Add Movie
@@ -44,43 +47,38 @@ function Header() {
 									</ul>
 
 									<div className="header__auth">
-										<button className="header__search-btn" type="button">
-											<i className="icon ion-ios-search"></i>
-										</button>
-
-										<a href="/SignIn" className="header__sign-in">
+										{role !== null && (
+											<button
+												className="header__sign-in"
+												type="button"
+												onClick={(e) => {
+													handleLogOut(e);
+												}}
+											>
+												Logout
+											</button>
+										)}
+										{role === null && (
+											<button
+												className="header__sign-in"
+												type="button"
+												onClick={(e) => {
+													handleSignIn(e);
+												}}
+											>
+												SignIn
+											</button>
+										)}
+										{/* <a href="/SignIn" className="header__sign-in">
 											<i className="icon ion-ios-log-in"></i>
 											<span>sign in</span>
-										</a>
+										</a> */}
 									</div>
-
-									<button className="header__btn" type="button">
-										<span></span>
-										<span></span>
-										<span></span>
-									</button>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-
-				<form action="#" className="header__search">
-					<div className="container">
-						<div className="row">
-							<div className="col-12">
-								<div className="header__search-content">
-									<input
-										type="text"
-										placeholder="Search for a movie, TV Series that you are looking for"
-									/>
-
-									<button type="button">search</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
 			</header>
 		</div>
 	);

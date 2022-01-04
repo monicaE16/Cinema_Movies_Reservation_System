@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Cards from "react-credit-cards";
 import Modal from "react-bootstrap/Modal";
 import "react-credit-cards/es/styles-compiled.css";
+import { buy } from "../API/mytickets";
 
-const CreditCard = () => {
+const CreditCard = ({ reserved, id }) => {
 	const [number, setNumber] = useState("");
 	const [name, setName] = useState("");
 	const [expiry, setExpiry] = useState("");
@@ -21,6 +22,12 @@ const CreditCard = () => {
 		) {
 			setIsOpen_error(true);
 		} else {
+			//console.log("herre", reserved[0]);
+			buy(id, reserved)
+				.then((res) => console.log(res))
+				.catch((e) => {
+					console.log(e);
+				});
 			showModal();
 		}
 	};

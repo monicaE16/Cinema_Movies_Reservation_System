@@ -39,7 +39,7 @@ function UpdateSchema(req, res, next) {
         start_time: Joi.string(),
         end_time:Joi.string(),
         room: Joi.string(),
-        empty_seats_count: Joi.number(),
+        // empty_seats_count: Joi.number(),
         price: Joi.number(),
         poster_url: Joi.string().uri(),
         trailer_url: Joi.string().uri(),

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/header";
 import MovieItem from "../components/movie_item";
 import { getMovies } from "../API/movies";
-const Home = () => {
+const Home = ({ user }) => {
 	const [movies, setMovies] = useState([]);
 	useEffect(() => {
 		getMovies()
@@ -11,7 +11,7 @@ const Home = () => {
 	}, []);
 	return (
 		<div>
-			<Header></Header>
+			<Header role={user.role}></Header>
 
 			<section className="home">
 				<div className="owl-carousel home__bg">
@@ -39,17 +39,11 @@ const Home = () => {
 							<h1 className="home__title">
 								<b>حاليا بدور العرض</b>
 							</h1>
-							<button className="home__nav home__nav--prev" type="button">
-								<i className="icon ion-ios-arrow-round-back"></i>
-							</button>
-							<button className="home__nav home__nav--next" type="button">
-								<i className="icon ion-ios-arrow-round-forward"></i>
-							</button>
 						</div>
 
 						<div className="col-12">
-							<div className="">
-								{movies.map((movie) => {
+						<div className="movies">							
+							{movies.map((movie) => {
 									return <MovieItem key={movie.id} movie={movie} />;
 								})}
 							</div>

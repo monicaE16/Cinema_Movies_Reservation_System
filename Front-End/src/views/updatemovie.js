@@ -1,17 +1,28 @@
 import React, { useState } from "react";
-import { createMovie } from "../API/movies";
+import { updateMovie } from "../API/movies";
+import { useLocation } from "react-router-dom";
+import moment from "moment";
+
 import Header from "../components/header";
 
-const Addmovie = () => {
-	const [title, setTitle] = useState("");
-	const [date, setDate] = useState("");
-	const [start_time, setStart_time] = useState("00:00:00");
-	const [end_time, setEnd_time] = useState("00:00:00");
-	const [room, setRoom] = useState("A");
-	const [price, setPrice] = useState(40);
-	const [poster_url, setPoster_url] = useState("");
-	const [trailer_url, setTrailer_url] = useState("");
+const Updatemovie = () => {
+	const location = useLocation();
+	const { movie } = location.state;
+	//console.log("movie in update", movie);
 
+	const [title, setTitle] = useState(movie.title);
+	const [date, setDate] = useState(movie.date);
+	const [start_time, setStart_time] = useState(movie.start_time);
+	const [end_time, setEnd_time] = useState(movie.end_time);
+	const [room, setRoom] = useState(movie.room);
+	const [price, setPrice] = useState(movie.price);
+	const [poster_url, setPoster_url] = useState(movie.poster_url);
+	const [trailer_url, setTrailer_url] = useState(movie.trailer_url);
+	// console.log(
+	// 	"inside update",
+	// 	date,
+	// 	moment(date, "YYYY-MM-DDThh:mm:ss A Z").format("MM/DD/YY")
+	// );
 	const handleClick = (e) => {
 		if (
 			!title ||
@@ -23,7 +34,7 @@ const Addmovie = () => {
 		) {
 			alert("Please Enter Valid Inputs");
 		} else {
-			const movie = {
+			const movie2 = {
 				title: title,
 				date: date,
 				start_time: start_time,
@@ -36,12 +47,10 @@ const Addmovie = () => {
 				trailer_url: trailer_url,
 			};
 
-			console.log(movie);
-			console.log(typeof end_time);
-			createMovie(movie)
+			updateMovie(movie.id, movie2)
 				.then((res) => {
 					console.log(res.message);
-					alert("Movie Created Successfully");
+					alert("Movie Updated Successfully");
 				})
 				.catch((e) => console.log(e));
 		}
@@ -81,7 +90,9 @@ const Addmovie = () => {
 											id="moviedate"
 											className="sign__input upload"
 											name="movieDate"
-											value={date}
+											value={moment(date, "YYYY-MM-DDThh:mm:ss A Z").format(
+												"YYYY-MM-DD"
+											)}
 											onChange={(e) => setDate(e.target.value)}
 										/>
 									</div>
@@ -172,7 +183,7 @@ const Addmovie = () => {
 											handleClick(e);
 										}}
 									>
-										Add Movie
+										Update Movie
 									</button>
 								</form>
 							</div>
@@ -184,4 +195,4 @@ const Addmovie = () => {
 	);
 };
 
-export default Addmovie;
+export default Updatemovie;

@@ -6,15 +6,15 @@ import Header from "../components/header";
 
 const Payment = () => {
 	const { state } = useLocation();
-	const { reserved } = state;
+	const { reserved, id } = state;
 
-	console.log(reserved);
+	console.log("in payment", reserved, id);
 	return (
 		<div>
 			<Header />
 			<section className="home">
 				<div className="container">
-					<CreditCard />
+					<CreditCard reserved={reserved} id={id} />
 				</div>
 			</section>
 		</div>
