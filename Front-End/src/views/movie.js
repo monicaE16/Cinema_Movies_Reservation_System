@@ -30,7 +30,7 @@ const Movie = () => {
 				<div className="container">
 					<div className="row">
 						<div className="col-12">
-							<h1 className="details__title">{title}</h1>
+							<h1 className="details__title tcolor">{title}</h1>
 						</div>
 						{/* <!-- end title --> */}
 
@@ -48,17 +48,21 @@ const Movie = () => {
 										<div className="card__content">
 											<ul className="card__meta">
 												<li>
-													<span>Price:</span> {price}
+												<i className="fas fa-ticket-alt detail" style={{fontSize:20}}></i>
+													<span className="detail">Price:</span> {price}
 												</li>
 												<li>
-													<span>Date:</span> {date}
+												<i className="fas fa-calendar-week detail" style={{fontSize:20}}></i>
+													<span className="detail" >Date:</span> {date}
 												</li>
 												<li>
-													<span>Start:</span> {start_time}
+												<i className="fas fa-clock detail"></i>
+													<span className="detail">Start:</span> {start_time}
 												</li>
 
 												<li>
-													<span>End:</span>
+												<i className="fas fa-clock detail"></i>
+													<span className="detail">End:</span>
 													{end_time}
 												</li>
 											</ul>

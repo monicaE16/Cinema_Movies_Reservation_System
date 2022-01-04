@@ -34,12 +34,16 @@ export const login = (username, password) => {
 		});
 };
 
-export const register = (username, password) => {
-	console.log(username, password);
+export const register = (username,firstName,lastName,email,password,role) => {
+	console.log(username,firstName,lastName,email,password,role);
 
 	const user = {
 		username,
+		firstName,
+		lastName,
+		email,
 		password,
+		role
 	};
 
 	// The post request : Sending the username and password to the url and if the
