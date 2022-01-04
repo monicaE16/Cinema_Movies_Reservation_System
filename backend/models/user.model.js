@@ -8,10 +8,9 @@ function model(sequelize) {
         firstName: { type: DataTypes.STRING, allowNull: false },
         lastName: { type: DataTypes.STRING, allowNull: false },
         email:{ type: DataTypes.STRING, allowNull: false },
-        role: { type: DataTypes.ENUM(['user', 'manager' , 'admin']), allowNull: false,defaultValue: "user" },
-        hash: { type: DataTypes.STRING, allowNull: false },
-        requesting_managerial: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false}
-    };
+        role: { type: DataTypes.ENUM(['user', 'manager' ]), allowNull: false,defaultValue: "user" },
+        hash: { type: DataTypes.STRING, allowNull: false }
+        };
 
     const options = {
         defaultScope: {
