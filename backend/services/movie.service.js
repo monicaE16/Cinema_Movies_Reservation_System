@@ -78,7 +78,7 @@ async function update(data, movie_id) {
         throw 'please use a future date'
     }
     const date_in=new Date(data.date).toISOString()
-    const my_query="SELECT * FROM `movies` WHERE `room` = '"+data.room+"' AND `date` = CONVERT('"+date_in+"', DATE) AND( ( `end_time` > CONVERT('"+data.start_time+"', TIME) AND `start_time` < CONVERT('"+data.start_time+"', TIME) ) OR( `start_time` < CONVERT('"+data.end_time+"', TIME) AND `end_time` > CONVERT('"+data.start_time+"', TIME) ) OR( `start_time` >= CONVERT('"+data.start_time+"', TIME) AND `end_time` <= CONVERT('"+data.end_time+"', TIME) ) )"
+    const my_query="SELECT * FROM `movies` WHERE id != "+movie_id+" AND`room` = '"+data.room+"' AND `date` = CONVERT('"+date_in+"', DATE) AND( ( `end_time` > CONVERT('"+data.start_time+"', TIME) AND `start_time` < CONVERT('"+data.start_time+"', TIME) ) OR( `start_time` < CONVERT('"+data.end_time+"', TIME) AND `end_time` > CONVERT('"+data.start_time+"', TIME) ) OR( `start_time` >= CONVERT('"+data.start_time+"', TIME) AND `end_time` <= CONVERT('"+data.end_time+"', TIME) ) )"
     const others= await sequelize.query(my_query,{ type: Sequelize.QueryTypes.SELECT });
 console.log(others.length);
     if (others.length!=0)
