@@ -69,7 +69,11 @@ async function create(params) {
 
     // save user
     await db.User.create(params);
+    const user = await db.User.findOne({ where: { username: params.username } })
+    const token = jwt.sign({ sub: user.username }, config.secret, { expiresIn: '7d' });
+    return { ...omitHash(user.get()), token };
 }
+
 async function getFutureManagers(params) {
     console.log("hksfk")
     return await db.User.findAll({attributes: ['username', 'Email'],where:{requesting_managerial:1}})
