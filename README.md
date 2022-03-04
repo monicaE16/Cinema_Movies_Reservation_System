@@ -38,6 +38,6 @@ nodemon server.js
  - To start the App use:
  ```
  cd..
- cd frontend
+ cd Front-End
  npm run start
  ```
